@@ -55,7 +55,10 @@ public class GradesHomeworkFragment extends android.app.Fragment {
                         "Grade 2",
                         "Grade 1",
                         "Kindergarten"};
-    String[] columnNames = getColumnValues();
+
+
+
+
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
 

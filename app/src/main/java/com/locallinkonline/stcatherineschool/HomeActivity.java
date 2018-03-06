@@ -16,7 +16,8 @@ public class HomeActivity extends AppCompatActivity implements
                                                         GradesHomeworkFragment.OnFragmentInteractionListener,
                                                         ActivitiesFragment.OnFragmentInteractionListener,
                                                         LunchFragment.OnFragmentInteractionListener,
-                                                        HomeworkForGradeFragment.OnFragmentInteractionListener {
+                                                        HomeworkForGradeFragment.OnFragmentInteractionListener,
+                                                        SubjectHomeworkFragment.OnFragmentInteractionListener {
 
 
 

@@ -6,12 +6,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/homeworkTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_grades_fragment" />
-
     <ListView
         android:id="@+id/homeworkGradesListView"
         android:layout_width="match_parent"

@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.locallinkonline.stcatherineschool.SubjectHomeworkFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/localLinkAd"
+        android:layout_width="match_parent"
+        android:layout_height="75px"
+        android:layout_above="@id/subjectsList"
+        android:layout_gravity="top"
+        android:text="@string/sample_ad" />
+
+    <ListView
+        android:id="@+id/subjectsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="125px" />
+
+</FrameLayout>
