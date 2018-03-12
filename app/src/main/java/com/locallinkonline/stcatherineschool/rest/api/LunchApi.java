@@ -1,6 +1,7 @@
 package com.locallinkonline.stcatherineschool.rest.api;
 
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
+import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ import retrofit2.http.Query;
 public interface LunchApi {
 
     @GET("lunch")
-    Call<List<Lunch>> getLunches(@Query("startDate") String startDate, @Query("endDate") String endDate);
+    Call<LunchResponseObject> getLunches(@Query("startDate") String startDate, @Query("endDate") String endDate);
 }

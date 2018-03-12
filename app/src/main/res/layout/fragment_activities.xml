@@ -6,9 +6,17 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/activitiesTextView"
+        android:id="@+id/localLinkAd"
+        android:layout_width="match_parent"
+        android:layout_height="75px"
+        android:layout_above="@id/subjectsList"
+        android:layout_gravity="top"
+        android:text="@string/sample_ad" />
+
+    <ListView
+        android:id="@+id/activitiesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_activities_fragment" />
+        android:paddingTop="125px" />
 
 </FrameLayout>

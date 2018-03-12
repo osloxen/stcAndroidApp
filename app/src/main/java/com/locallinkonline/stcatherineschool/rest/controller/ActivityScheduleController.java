@@ -1,32 +1,36 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
 import com.locallinkonline.stcatherineschool.rest.api.LunchApi;
-import com.locallinkonline.stcatherineschool.rest.model.Lunch;
+import com.locallinkonline.stcatherineschool.rest.api.ScheduleApi;
 import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
+import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by espaan on 3/5/18.
+ * Created by dberge on 3/10/18.
  */
 
-public class LunchController extends BaseController {
+public class ActivityScheduleController extends BaseController {
 
-    public LunchResponseObject getLunches(Date startDate, Date endDate) {
+    public SportsSchedule getSchedule(String grade, Date startDate, Date endDate,
+                                      String sport, String gender, String eventType) {
 
-        LunchApi lunchApi = retrofit.create(LunchApi.class);
-        Call<LunchResponseObject> call = lunchApi.getLunches(sdf.format(startDate), sdf.format(endDate));
+        // TODO FIX EVERYTHING BELOW THIS!!!
+        ScheduleApi scheduleApi = retrofit.create(ScheduleApi.class);
+        Call<SportsSchedule> call = scheduleApi.getActivitySchedule(grade,
+                                                                    sdf.format(startDate),
+                                                                    sdf.format(endDate),
+                                                                    sport, gender, eventType);
 
-        Response<LunchResponseObject> response;
+        Response<SportsSchedule> response;
 
         try {
-                response = call.execute();
+            response = call.execute();
 
             /*
             response = call.enqueue(new Callback<List<Lunch>>() {
@@ -52,4 +56,5 @@ public class LunchController extends BaseController {
 
         return null;
     }
+
 }
