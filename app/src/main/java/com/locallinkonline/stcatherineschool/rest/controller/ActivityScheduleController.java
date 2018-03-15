@@ -1,8 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
-import com.locallinkonline.stcatherineschool.rest.api.LunchApi;
 import com.locallinkonline.stcatherineschool.rest.api.ScheduleApi;
-import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 
 import java.io.IOException;
@@ -32,19 +30,6 @@ public class ActivityScheduleController extends BaseController {
         try {
             response = call.execute();
 
-            /*
-            response = call.enqueue(new Callback<List<Lunch>>() {
-                @Override
-                public void onResponse(Call<MyItem> call, Response<MyItem> response) {
-                    MyItem myItem=response.body();
-                }
-
-                @Override
-                public void onFailure(Call<MyItem> call, Throwable t) {
-                    //Handle failure
-                }
-            });
-            */
 
         } catch (IOException e) {
             response = null;

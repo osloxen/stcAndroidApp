@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public abstract class BaseController {
     protected final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    protected final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodblue/stc/";
+    protected final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
     protected final Gson gson = new GsonBuilder().setLenient().create();
     protected final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
