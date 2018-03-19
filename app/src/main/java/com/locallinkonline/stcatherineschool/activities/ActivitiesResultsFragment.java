@@ -1,5 +1,6 @@
 package com.locallinkonline.stcatherineschool.activities;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
+import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,13 +33,21 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
 
 
     String[] results = {"Loading..."};
+    SportEvent sportEvent = new SportEvent();
+    SportEvent[] events = {sportEvent.getLoadingSportEvent()};
 
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
+    ActivityResultAdapter eventListAdapter;
+
 
     String activity;
     String grade;
     String gender;
+
+
+
+
 
     public ActivitiesResultsFragment() {
         // Required empty public constructor
@@ -53,13 +64,9 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
 
         listView = view.findViewById(R.id.activitiesResultsListView);
 
-        listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                results
-        );
+        eventListAdapter = new ActivityResultAdapter(this.getContext(),events);
 
-        listView.setAdapter(listViewAdapter);
+        listView.setAdapter(eventListAdapter);
 
         new GetActivityDataFromCloud().execute();
 
@@ -86,25 +93,21 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
             long ltime=startDate.getTime()+8*24*60*60*1000;
             Date endDate=new Date(ltime);
 
+            Log.d("grade: ", grade);
+            Log.d("gender: ", gender);
+            Log.d("activity: ", activity);
 
             ActivityScheduleController scheduleController = new ActivityScheduleController();
-            //            List<Lunch> lunchList = lunchController.getLunches(startDate,endDate);
-            SportsSchedule scheduleFromCloud = scheduleController.getSchedule("grade8",
+
+            SportsSchedule scheduleFromCloud = scheduleController.getSchedule(
+                    grade,
                     startDate,
                     endDate,
-                    "volleyball",
-                    "girls",
+                    activity,
+                    gender,
                     "all");
-            List<SportEvent> scheduleList = scheduleFromCloud.getSportScheduleArray();
-            List<String> activitiesScheduleListFromCloud = new ArrayList<>();
 
-            for(SportEvent event : scheduleList) {
-
-                Log.d("Schedule Notes: ", event.getNotes());
-                activitiesScheduleListFromCloud.add(event.getNotes());
-            }
-
-            ActivitiesResultsFragment.this.results = activitiesScheduleListFromCloud.toArray(new String[activitiesScheduleListFromCloud.size()]);
+            events = scheduleFromCloud.getActivityScheduleAsArray();
 
             return null;
         }
@@ -116,13 +119,18 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
 
             Log.d("postExecute", Arrays.toString(ActivitiesResultsFragment.this.results));
 
-            listViewAdapter = new ArrayAdapter<String>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    ActivitiesResultsFragment.this.results
-            );
+            eventListAdapter = new ActivityResultAdapter(ActivitiesResultsFragment.this.getContext(),events);
 
-            ActivitiesResultsFragment.this.listView.setAdapter(listViewAdapter);
+            ActivitiesResultsFragment.this.listView.setAdapter(eventListAdapter);
+
+            if (events.length < 1) {
+                Toast.makeText(getActivity(),
+                        "I do not have information on " +
+                                "grade: " + grade + " with activity: " + activity +
+                                "with gender: " + gender + " Please make sure the activity " +
+                                "is in season and if it is let the school know this app needs " +
+                                "to be updated.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

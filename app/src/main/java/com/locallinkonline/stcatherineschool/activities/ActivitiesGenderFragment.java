@@ -70,7 +70,7 @@ public class ActivitiesGenderFragment extends android.app.Fragment {
                 ActivitiesResultsFragment actResultsFragment = new ActivitiesResultsFragment();
                 actResultsFragment.grade = grade;
                 actResultsFragment.activity = activity;
-                actResultsFragment.gender = allGenders[position];
+                actResultsFragment.gender = allGenders[position].toLowerCase();
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

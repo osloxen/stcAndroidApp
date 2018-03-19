@@ -84,7 +84,7 @@ public class ActivitiesGradesFragment extends android.app.Fragment {
 
                 ActivitiesGenderFragment actGenderFragment = new ActivitiesGenderFragment();
                 actGenderFragment.activity = activity;
-                actGenderFragment.grade = allGrades[position];
+                actGenderFragment.grade = allGrades[position].toLowerCase().replaceAll("\\s+","");
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

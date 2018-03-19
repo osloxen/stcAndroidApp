@@ -17,4 +17,9 @@ public class SportsSchedule {
 
     public List<SportEvent> getSportScheduleArray() { return sportScheduleArray; }
 
+    public SportEvent[] getActivityScheduleAsArray() {
+
+        return sportScheduleArray.toArray(new SportEvent[sportScheduleArray.size()]);
+    }
+
 }

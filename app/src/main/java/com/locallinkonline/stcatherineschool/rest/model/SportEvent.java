@@ -42,4 +42,13 @@ public class SportEvent {
     public String getLocationName() { return locationName; }
 
     public String getLocationAddress() { return locationAddress; }
+
+    public SportEvent getLoadingSportEvent() {
+        SportEvent returnThisEvent = new SportEvent();
+        returnThisEvent.notes = "loading...";
+        returnThisEvent.date = new Date();
+        returnThisEvent.startTime = "loading...";
+
+        return returnThisEvent;
+    }
 }

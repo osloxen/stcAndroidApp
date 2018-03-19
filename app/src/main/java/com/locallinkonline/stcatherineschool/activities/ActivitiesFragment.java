@@ -99,14 +99,6 @@ public class ActivitiesFragment extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
 
 
-        /*
-        DAVID ADD ALL THE CREATE VIEW FROM LUNCHES HERE.
-
-        DON'T FORGET YOU NEED TO LIST THE SPORTS AND GRADES EVENTUALLY
-         */
-
-
-
         listView = view.findViewById(R.id.activitiesList);
 
         listViewAdapter = new ArrayAdapter<String>(
@@ -130,13 +122,26 @@ public class ActivitiesFragment extends android.app.Fragment {
                 Log.d("id", Long.toString(id));
                 Log.d("string value: ", allActivities[position]);
 
+                if (allActivities[position].equals("Volleyball")) {
 
-                ActivitiesGradesFragment actGradeFragment = new ActivitiesGradesFragment();
-                actGradeFragment.activity = allActivities[position].toLowerCase();
+                    ActivitiesGradesFragment actGradeFragment = new ActivitiesGradesFragment();
+                    actGradeFragment.activity = allActivities[position].toLowerCase().replaceAll("\\s+","");
 
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.rootActivityView, actGradeFragment).commit();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.rootActivityView, actGradeFragment).commit();
+                } else if (allActivities[position].equals("Drama")) {
+
+                    SchoolActivityFragment schoolActivityFragment = new SchoolActivityFragment();
+
+                    schoolActivityFragment.activity = "drama";
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.rootActivityView, schoolActivityFragment).commit();
+
+                }
+
 
             }
         });
