@@ -1,7 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.locallinkonline.stcatherineschool.StcHomeworkByGrade;
 
 import java.util.List;
 

@@ -184,7 +184,7 @@ public class GradesHomeworkFragment extends android.app.Fragment {
 
         listView.setAdapter(listViewAdapter);
 
-        listView.invalidateViews();
+//        listView.invalidateViews();
 
 //        new GetColumnData().execute();
 
@@ -197,7 +197,8 @@ public class GradesHomeworkFragment extends android.app.Fragment {
 
 
                 HomeworkForGradeFragment homeworkFragment = new HomeworkForGradeFragment();
-                homeworkFragment.grade = "grade8";
+//                homeworkFragment.grade = "grade8";
+                homeworkFragment.grade = mItems[position].toLowerCase().replaceAll("\\s+","");
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

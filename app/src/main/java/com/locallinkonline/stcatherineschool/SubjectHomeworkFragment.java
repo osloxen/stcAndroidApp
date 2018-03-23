@@ -7,19 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+
+import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
+import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
+
 
 import java.util.ArrayList;
-
-
-
-
+import java.util.List;
 
 
 /**
@@ -46,6 +44,10 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
 
+    List<HomeworkClassAllGrades> gradeSchoolHomeworkList;
+    List<HomeworkClassAllGrades> middleSchoolHomeworkList;
+
+    String grade;
 
     public SubjectHomeworkFragment() {
         // Required empty public constructor
@@ -81,59 +83,50 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_subject_homework, container, false);
 
         // subjectsList
+//        listView = view.findViewById( R.id.subjectsList );
         listView = view.findViewById( R.id.subjectsList );
 
-        if (allHomework != null) {
-            GradeEight currentClass = allHomework.get(position);
-            System.out.println("Science: " + currentClass.science);
-            String[] homeworkForThisDay = {
-                        "General Reminder",
-                        currentClass.genReminder,
-                        "Algebra",
-                        currentClass.algebra,
-                        "Algebra Fundamentals",
-                        currentClass.algebraFund,
-                        "Middle School Math",
-                        currentClass.midSchoolMath,
-                        "English",
-                        currentClass.english,
-                        "Social Studies",
-                        currentClass.socialStudies,
-                       "Science",
-                        currentClass.science,
-                        "Spanish",
-                        currentClass.spanish,
-                        "Music",
-                        currentClass.music,
-                        "Current Class Project",
-                        currentClass.classProject,
-                        "Next Special Event",
-                        currentClass.specialEvent};
-            arrayForListView = homeworkForThisDay;
+        if (grade.equals("grade8")) {
+
+            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+
+            arrayForListView = homeworkToPresent.getEigthGradeHomeworkAsArray();
+
+
+        } else if (grade.equals("grade7")) {
+
+            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+
+            arrayForListView = homeworkToPresent.getSeventhGradeHomeworkAsArray();
+
+        } else if (grade.equals("grade6")) {
+
+            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+
+            arrayForListView = homeworkToPresent.getSixthGradeHomeworkAsArray();
+
+        } else {
+
+
+            HomeworkClassAllGrades homeworkToPresent = gradeSchoolHomeworkList.get(position);
+
+            arrayForListView = homeworkToPresent.getAllGradeschoolHomeworkAsArray();
         }
 
 
+        HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(),arrayForListView);
+
+/*
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 arrayForListView
         );
+*/
 
 
-
-
-
-        listView.setAdapter(listViewAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // When clicked, show a toast with the TextView text
-                Toast.makeText(getActivity(),
-                        ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        listView.setAdapter(listViewAdapter);
+        listView.setAdapter(homeworkListAdapter);
 
 
 
