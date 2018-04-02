@@ -14,5 +14,9 @@ public class LunchResponseObject {
     @SerializedName("lunchScheduleArray")
     private List<Lunch> lunchScheduleArray;
 
-    public List<Lunch> getLunchScheduleArray() { return lunchScheduleArray; }
+    public List<Lunch> getLunchScheduleList() { return lunchScheduleArray; }
+
+    public Lunch[] getLunchAsArray() {
+        return lunchScheduleArray.toArray(new Lunch[lunchScheduleArray.size()]);
+    }
 }

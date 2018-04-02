@@ -51,10 +51,8 @@ public class GradesHomeworkFragment extends android.app.Fragment {
                         "Grade 6",
                         "Grade 5",
                         "Grade 4",
-                        "Grade 3",
-                        "Grade 2",
-                        "Grade 1",
-                        "Kindergarten"};
+                        "Grade 3"
+                        };
 
 
 

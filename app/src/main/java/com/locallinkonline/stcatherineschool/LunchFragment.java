@@ -12,10 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
+import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
+import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
 import com.locallinkonline.stcatherineschool.rest.controller.LunchController;
+import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
+import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
+import com.locallinkonline.stcatherineschool.utilities.GetAdImpression;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,11 +43,20 @@ public class LunchFragment extends android.app.Fragment {
     String[] mItems = {"Loading..."};
     String[] allLunches = {"Loading..."};
 
+    AdUnit adToDisplay;
+
+    View view;
+
+    Lunch loadingLunchObject = new Lunch();
+    Lunch[] lunches = {loadingLunchObject.waitForLunchToLoad()};
+
     //List<Lunch> allLunches = new List<Lunch>();
     ArrayList<String> listOfLunches = new ArrayList<>();
 
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
+
+    LunchDisplayAdapter lunchViewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,7 +104,7 @@ public class LunchFragment extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_lunch, container, false);
+        view = inflater.inflate(R.layout.fragment_lunch, container, false);
 
         listView = view.findViewById(R.id.lunchDetailsListView);
 
@@ -97,54 +112,20 @@ public class LunchFragment extends android.app.Fragment {
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 allLunches
-                //listOfLunches.toArray(new String[listOfLunches.size()])
         );
 
-        listView.setAdapter(listViewAdapter);
+        lunchViewAdapter = new LunchDisplayAdapter(this.getContext(),lunches);
 
-/*
-        AsyncTask.execute(new Runnable() {
-                  @Override
-                  public void run() {
-                      // All your networking logic
-                      // should be here
+//        listView.setAdapter(listViewAdapter);
+        listView.setAdapter(lunchViewAdapter);
 
-                      System.out.println("THIS IS ASYNC WORKING!!!");
+        String foo;
 
-                      // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                      Date startDate = new Date();
-                      long ltime=startDate.getTime()+8*24*60*60*1000;
-                      Date endDate=new Date(ltime);
+        new GetAdImpression().execute();
 
-
-                      LunchController lunchController = new LunchController();
-                        //            List<Lunch> lunchList = lunchController.getLunches(startDate,endDate);
-                      LunchResponseObject lunchFromCloud = lunchController.getLunches(startDate,endDate);
-                      List<Lunch> lunchList = lunchFromCloud.getLunchScheduleArray();
-                      List<String> updateLunchesWithThisArray = new ArrayList<>();
-
-                      for(Lunch lunch : lunchList) {
-
-                          Log.d("Lunch Description: ", lunch.getDescription());
-                          updateLunchesWithThisArray.add(lunch.getDescription());
-                      }
-
-                      LunchFragment.this.allLunches = updateLunchesWithThisArray.toArray(new String[updateLunchesWithThisArray.size()]);
-
-                  }
-              });
-*/
-
-//        new GetLunchData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetLunchData().execute();
 
-
-        listView.invalidateViews();
-
-
-
-
-        // INSERT listView.setOnItemClickLister HERE
+//        listView.invalidateViews();
 
 
         return view;
@@ -193,8 +174,6 @@ public class LunchFragment extends android.app.Fragment {
 
     private class GetLunchData extends AsyncTask<Void,Void,Void> {
 
-
-
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -210,7 +189,7 @@ public class LunchFragment extends android.app.Fragment {
             LunchController lunchController = new LunchController();
             //            List<Lunch> lunchList = lunchController.getLunches(startDate,endDate);
             LunchResponseObject lunchFromCloud = lunchController.getLunches(startDate,endDate);
-            List<Lunch> lunchList = lunchFromCloud.getLunchScheduleArray();
+            List<Lunch> lunchList = lunchFromCloud.getLunchScheduleList();
             List<String> updateLunchesWithThisArray = new ArrayList<>();
 
             for(Lunch lunch : lunchList) {
@@ -220,6 +199,7 @@ public class LunchFragment extends android.app.Fragment {
             }
 
             LunchFragment.this.allLunches = updateLunchesWithThisArray.toArray(new String[updateLunchesWithThisArray.size()]);
+            LunchFragment.this.lunches = lunchFromCloud.getLunchAsArray();
 
 
 
@@ -231,8 +211,6 @@ public class LunchFragment extends android.app.Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Log.d("postExecute", Arrays.toString(LunchFragment.this.allLunches));
-
 
               listViewAdapter = new ArrayAdapter<String>(
                       getActivity(),
@@ -240,16 +218,55 @@ public class LunchFragment extends android.app.Fragment {
                       LunchFragment.this.allLunches
               );
 
+            lunchViewAdapter = new LunchDisplayAdapter(LunchFragment.this.getContext(),lunches);
 
-              Log.d("postExecute", Arrays.toString(LunchFragment.this.allLunches));
+            Log.d("postExecute", Arrays.toString(LunchFragment.this.allLunches));
 
-              LunchFragment.this.listView.setAdapter(listViewAdapter);
+            listView.setAdapter(lunchViewAdapter);
+
+
 
         }
     }
 
 
 
+
+    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
+
+        AdUnit ad;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
+
+
+            GetAdImpressionController adController = new GetAdImpressionController();
+            ad = adController.getAdImpression("android","1001","undefined");
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+
+            LunchFragment.this.adToDisplay = ad;
+
+            TextView adDisplay;
+
+            adDisplay = LunchFragment.this.view.findViewById(R.id.localLinkAdBusiness);
+
+            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
+
+            adDisplay.setText(adDisplayString);
+        }
+    }
 
 
 }

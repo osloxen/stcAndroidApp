@@ -13,17 +13,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
 import com.locallinkonline.stcatherineschool.rest.controller.GradeschoolHomeworkController;
 import com.locallinkonline.stcatherineschool.rest.controller.HomeworkController;
+import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.EighthGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.rest.model.GradeschoolHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
@@ -60,7 +65,9 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
     List<HomeworkClassAllGrades> gradeSchoolHomeworkList;
     List<HomeworkClassAllGrades> middleSchoolHomeworkList;
 
+    AdUnit adToDisplay;
 
+    View view;
 
 
     public String convertDateToHumanReadable(String originalDate) {
@@ -144,7 +151,7 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         listOfDates.add("Loading...");
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_homework_for_grade, container, false);
+        view = inflater.inflate(R.layout.fragment_homework_for_grade, container, false);
 
         listView = view.findViewById( R.id.homeworkByGrade );
 
@@ -157,6 +164,8 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         listView.setAdapter(listViewAdapter);
 
         new GetHomeworkData().execute();
+
+        //new GetAdImpression().execute();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -242,8 +251,15 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
 
             DateFormat dateFormat = new SimpleDateFormat("EEEE MMM dd");
             Date startDate = new Date();
+            /*
             long ltime=startDate.getTime()+8*24*60*60*1000;
             Date endDate=new Date(ltime);
+            */
+
+            Calendar c=new GregorianCalendar();
+            c.add(Calendar.DATE, 30);
+            Date endDate = c.getTime();
+
 
 
             if (grade.equals("grade8")) {
@@ -336,4 +352,44 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
             HomeworkForGradeFragment.this.listView.setAdapter(listViewAdapter);
         }
     }
+
+
+    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
+
+        AdUnit ad;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
+
+
+            GetAdImpressionController adController = new GetAdImpressionController();
+            ad = adController.getAdImpression("android","1001","undefined");
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+
+            HomeworkForGradeFragment.this.adToDisplay = ad;
+
+            TextView adDisplay;
+
+            adDisplay = HomeworkForGradeFragment.this.view.findViewById(R.id.homeworkLocalLinkAd);
+
+            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
+
+            adDisplay.setText(adDisplayString);
+        }
+    }
+
+
+
 }

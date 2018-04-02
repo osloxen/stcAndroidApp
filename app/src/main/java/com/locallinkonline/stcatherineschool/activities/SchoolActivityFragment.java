@@ -102,6 +102,9 @@ public class SchoolActivityFragment extends android.app.Fragment {
             TextView productionSched = (TextView) getView().findViewById(R.id.performanceSchedDataTV);
             productionSched.setText(SchoolActivityFragment.this.regularScheduleData);
             productionSched.setMovementMethod(new ScrollingMovementMethod());
+
+            TextView activityTitle = (TextView) getView().findViewById(R.id.activityTextView);
+            activityTitle.setText(SchoolActivityFragment.this.activity);
         }
     }
 

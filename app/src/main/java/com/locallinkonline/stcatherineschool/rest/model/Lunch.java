@@ -29,4 +29,12 @@ public class Lunch {
     public String getDescription() {
         return description;
     }
+
+    public Lunch waitForLunchToLoad() {
+        Lunch waitForLunchToLoad = new Lunch();
+        waitForLunchToLoad.date = new Date();
+        waitForLunchToLoad.description = "loading...";
+
+        return waitForLunchToLoad;
+    }
 }

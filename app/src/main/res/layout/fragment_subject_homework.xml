@@ -1,23 +1,34 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.locallinkonline.stcatherineschool.SubjectHomeworkFragment">
+    tools:context="com.locallinkonline.stcatherineschool.SubjectHomeworkFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
+
+
     <TextView
-        android:id="@+id/localLinkAd"
+        android:id="@+id/homeworkLocalLinkAd"
         android:layout_width="match_parent"
-        android:layout_height="75px"
-        android:layout_above="@id/subjectsList"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_gravity="top"
-        android:text="@string/sample_ad" />
+        android:text="@string/sample_ad"
+        android:textColor="@android:color/black"
+        android:includeFontPadding="false"
+        android:gravity="top"
+        android:textSize="18sp" />
 
     <ListView
-        android:id="@+id/subjectsList"
+        android:id="@+id/homeworkByGrade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="125px" />
 
-</FrameLayout>
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"/>
+
+</LinearLayout>

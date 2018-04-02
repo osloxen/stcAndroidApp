@@ -1,22 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.locallinkonline.stcatherineschool.LunchFragment">
+    tools:context="com.locallinkonline.stcatherineschool.LunchFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/localLinkAd"
+        android:id="@+id/localLinkAdBusiness"
         android:layout_width="match_parent"
-        android:layout_height="75px"
-        android:layout_above="@id/subjectsList"
+        android:layout_height="wrap_content"
+        android:paddingTop="20px"
+        android:paddingLeft="10px"
         android:layout_gravity="top"
-        android:text="@string/sample_ad" />
+        android:text="@string/sample_ad"
+        android:textColor="@android:color/black"
+        android:includeFontPadding="false"
+        android:gravity="top"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"/>
+
+
 
     <ListView
         android:id="@+id/lunchDetailsListView"
+        android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="125px" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:paddingTop="10px"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"/>
+</LinearLayout>

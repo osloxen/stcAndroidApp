@@ -14,15 +14,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.locallinkonline.stcatherineschool.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
+import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
+import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -46,6 +51,9 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
     String gender;
 
 
+    View view;
+
+    AdUnit adToDisplay;
 
 
 
@@ -59,7 +67,7 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_activities_results, container, false);
+        view = inflater.inflate(R.layout.fragment_activities_results, container, false);
 
 
         listView = view.findViewById(R.id.activitiesResultsListView);
@@ -67,6 +75,8 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
         eventListAdapter = new ActivityResultAdapter(this.getContext(),events);
 
         listView.setAdapter(eventListAdapter);
+
+        new GetAdImpression().execute();
 
         new GetActivityDataFromCloud().execute();
 
@@ -90,8 +100,11 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
 
             // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date startDate = new Date();
-            long ltime=startDate.getTime()+8*24*60*60*1000;
-            Date endDate=new Date(ltime);
+            //long ltime=startDate.getTime()+20*24*60*60*1000;  // 30 is for 30 days
+            Calendar c=new GregorianCalendar();
+            c.add(Calendar.DATE, 30);
+            Date endDate = c.getTime();
+            //Date endDate=new Date(ltime);
 
             Log.d("grade: ", grade);
             Log.d("gender: ", gender);
@@ -134,6 +147,40 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
         }
     }
 
+    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
 
+        AdUnit ad;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
+
+
+            GetAdImpressionController adController = new GetAdImpressionController();
+            ad = adController.getAdImpression("android","1001","undefined");
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+
+            ActivitiesResultsFragment.this.adToDisplay = ad;
+
+            TextView adDisplay;
+
+            adDisplay = ActivitiesResultsFragment.this.view.findViewById(R.id.localLinkAdBusiness);
+
+            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
+
+            adDisplay.setText(adDisplayString);
+        }
+    }
 
 }

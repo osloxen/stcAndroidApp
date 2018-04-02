@@ -2,6 +2,7 @@ package com.locallinkonline.stcatherineschool;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
+import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
+import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
 
 
@@ -49,6 +53,10 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
 
     String grade;
 
+    View view;
+
+    AdUnit adToDisplay;
+
     public SubjectHomeworkFragment() {
         // Required empty public constructor
     }
@@ -80,11 +88,11 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_subject_homework, container, false);
+        view = inflater.inflate(R.layout.fragment_subject_homework, container, false);
 
         // subjectsList
 //        listView = view.findViewById( R.id.subjectsList );
-        listView = view.findViewById( R.id.subjectsList );
+        listView = view.findViewById( R.id.homeworkByGrade);
 
         if (grade.equals("grade8")) {
 
@@ -113,6 +121,7 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
             arrayForListView = homeworkToPresent.getAllGradeschoolHomeworkAsArray();
         }
 
+        new GetAdImpression().execute();
 
         HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(),arrayForListView);
 
@@ -180,4 +189,41 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
     }
 
     private SubjectHomeworkFragment.OnFragmentInteractionListener mListener;
+
+
+    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
+
+        AdUnit ad;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
+
+
+            GetAdImpressionController adController = new GetAdImpressionController();
+            ad = adController.getAdImpression("android","1001","undefined");
+
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+
+            SubjectHomeworkFragment.this.adToDisplay = ad;
+
+            TextView adDisplay;
+
+            adDisplay = SubjectHomeworkFragment.this.view.findViewById(R.id.homeworkLocalLinkAd);
+
+            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
+
+            adDisplay.setText(adDisplayString);
+        }
+    }
 }

@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/activitiesResultsListView"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.locallinkonline.stcatherineschool.LunchFragment"
+android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/localLinkAdBusiness"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_gravity="top"
+        android:text="@string/sample_ad"
+        android:textColor="@android:color/black"
+        android:includeFontPadding="false"
+        android:gravity="top"
+        android:textSize="18sp" />
+
+
+
+
+<ListView
+    android:id="@+id/activitiesResultsListView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+</LinearLayout>

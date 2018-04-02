@@ -39,8 +39,8 @@ public class HomeworkSubjectDisplayAdapter extends ArrayAdapter<String> {
 
         if ((position%2) == 0) {  // Check for odd number
 
-            homeworkTV.setAlpha(0.0f);
-            titleTV.setAlpha(1.0f);
+            homeworkTV.setAlpha(0.0f);  // make invisible
+            titleTV.setAlpha(1.0f);  // make visible
             titleTV.setText(currentHomework);
         } else {
 
