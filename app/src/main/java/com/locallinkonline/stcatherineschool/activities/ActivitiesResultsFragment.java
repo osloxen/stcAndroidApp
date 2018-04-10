@@ -1,5 +1,6 @@
 package com.locallinkonline.stcatherineschool.activities;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
+import com.locallinkonline.stcatherineschool.utilities.GetAdImpression;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,9 +36,7 @@ import java.util.List;
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesResultsFragment extends android.app.Fragment {
-
-
+public class ActivitiesResultsFragment extends Fragment {
     String[] results = {"Loading..."};
     SportEvent sportEvent = new SportEvent();
     SportEvent[] events = {sportEvent.getLoadingSportEvent()};
@@ -45,22 +45,17 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
     ArrayAdapter<String> listViewAdapter;
     ActivityResultAdapter eventListAdapter;
 
-
     String activity;
     String grade;
     String gender;
 
-
     View view;
 
-    AdUnit adToDisplay;
-
-
+    GetAdImpression adImpressionRetriever;
 
     public ActivitiesResultsFragment() {
-        // Required empty public constructor
+        this.adImpressionRetriever = new GetAdImpression(this);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,28 +64,24 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
 
         view = inflater.inflate(R.layout.fragment_activities_results, container, false);
 
-
         listView = view.findViewById(R.id.activitiesResultsListView);
 
         eventListAdapter = new ActivityResultAdapter(this.getContext(),events);
 
         listView.setAdapter(eventListAdapter);
 
-        new GetAdImpression().execute();
+        adImpressionRetriever.execute();
 
         new GetActivityDataFromCloud().execute();
 
         // Inflate the layout for this fragment
         return view;
-
     }
 
 
 
 
     private class GetActivityDataFromCloud extends AsyncTask<Void,Void,Void> {
-
-
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -146,41 +137,4 @@ public class ActivitiesResultsFragment extends android.app.Fragment {
             }
         }
     }
-
-    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
-
-        AdUnit ad;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-
-            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
-
-
-            GetAdImpressionController adController = new GetAdImpressionController();
-            ad = adController.getAdImpression("android","1001","undefined");
-
-            return null;
-        }
-
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-
-            ActivitiesResultsFragment.this.adToDisplay = ad;
-
-            TextView adDisplay;
-
-            adDisplay = ActivitiesResultsFragment.this.view.findViewById(R.id.localLinkAdBusiness);
-
-            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
-
-            adDisplay.setText(adDisplayString);
-        }
-    }
-
 }
