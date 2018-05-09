@@ -30,10 +30,6 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-
-
-
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -44,8 +40,6 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class GradesHomeworkFragment extends android.app.Fragment {
 
-
-
     String[] mItems = { "Grade 8",
                         "Grade 7",
                         "Grade 6",
@@ -54,12 +48,9 @@ public class GradesHomeworkFragment extends android.app.Fragment {
                         "Grade 3"
                         };
 
-
-
-
     ListView listView;
-    ArrayAdapter<String> listViewAdapter;
 
+    ArrayAdapter<String> listViewAdapter;
 
     public String[] getColumnValues() {
 
@@ -85,7 +76,7 @@ public class GradesHomeworkFragment extends android.app.Fragment {
                 try {
                     myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
 
-                    if (myConnection.getResponseCode() == 200) {
+                    if (HttpsURLConnection.HTTP_OK == myConnection.getResponseCode()) {
                         // Success
                         InputStream responseBody = myConnection.getInputStream();
                         InputStreamReader responseBodyReader =
@@ -98,14 +89,7 @@ public class GradesHomeworkFragment extends android.app.Fragment {
 
                             String key = jsonReader.nextName(); // Fetch the next key
 
-
-                            List<String> columns = new ArrayList<String>();
-
-                            if (key.equals("grade")) {
-                                jsonReader.skipValue();
-                            } else if (key.equals("numColumns")) {
-                                jsonReader.skipValue();
-                            } else if (key.equals("columnArray")) {
+                            if(key.equals("columnArray")) {
                                 jsonReader.beginArray();
                                 while (jsonReader.hasNext()) {
                                     columnNames.add(jsonReader.nextString());
@@ -120,7 +104,6 @@ public class GradesHomeworkFragment extends android.app.Fragment {
 
                         mItems = columnNames.toArray(new String[(columnNames.size())]);
 
-
                     } else {
                         // Error handling code goes here
                     }
@@ -128,25 +111,17 @@ public class GradesHomeworkFragment extends android.app.Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
 
         return columnNames.toArray(new String[columnNames.size()]);
     }
 
-
-
-
-
     private OnFragmentInteractionListener mListener;
 
     public GradesHomeworkFragment() {
         // Required empty public constructor
     }
-
-
 
     public static GradesHomeworkFragment newInstance() {
         GradesHomeworkFragment fragment = new GradesHomeworkFragment();
@@ -155,14 +130,11 @@ public class GradesHomeworkFragment extends android.app.Fragment {
         return fragment;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-
-
 
     @Nullable
     @Override
@@ -207,10 +179,6 @@ public class GradesHomeworkFragment extends android.app.Fragment {
         return view;
     }
 
-
-
-
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -250,43 +218,33 @@ public class GradesHomeworkFragment extends android.app.Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
     /**
      * Async private class below this comment should be last item in this class always.
      */
 
-
     private class GetColumnData extends AsyncTask<Void,Void,Void> {
-
-
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d("preExecute", Arrays.toString(mItems));
-
         }
-
 
         @Override
         protected Void doInBackground(Void... voids) {
 
             final List<String> columnNames = new ArrayList<String>();
 
-
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-
                     GradesHomeworkFragment.this.getColumnValues();
-
                 }
 
             });
 
             return null;
         }
-
 
         @Override
         protected void onPostExecute(Void result) {
@@ -301,11 +259,6 @@ public class GradesHomeworkFragment extends android.app.Fragment {
             Log.d("postExecute", Arrays.toString(mItems));
 
             GradesHomeworkFragment.this.listView.setAdapter(listViewAdapter);
-
-
-
         }
-
     }
-
 }

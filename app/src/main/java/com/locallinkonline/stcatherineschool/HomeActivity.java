@@ -20,17 +20,12 @@ public class HomeActivity extends AppCompatActivity implements
                                                         HomeworkForGradeFragment.OnFragmentInteractionListener,
                                                         SubjectHomeworkFragment.OnFragmentInteractionListener {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         setupNavigationView();
     }
-
-
 
     private void setupNavigationView() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
@@ -50,8 +45,6 @@ public class HomeActivity extends AppCompatActivity implements
         }
     }
 
-
-
     protected void selectFragment(MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()) {
@@ -67,8 +60,6 @@ public class HomeActivity extends AppCompatActivity implements
         }
     }
 
-
-
     protected void pushFragment(Fragment fragment) {
         if (fragment == null)
             return;
@@ -82,7 +73,6 @@ public class HomeActivity extends AppCompatActivity implements
             }
         }
     }
-
 
     @Override
     public void onFragmentInteraction(Uri uri) {

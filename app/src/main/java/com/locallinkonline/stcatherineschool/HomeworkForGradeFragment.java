@@ -36,8 +36,6 @@ import com.locallinkonline.stcatherineschool.rest.model.SeventhGradeHomeworkSche
 import com.locallinkonline.stcatherineschool.rest.model.SixthGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 
-
-
 public class HomeworkForGradeFragment extends android.app.Fragment {
 
 
@@ -51,7 +49,6 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
     public void setGrade(String gradeFromListView) {
         grade = gradeFromListView;
     }
-
 
     String[] mItems = {"Loading..."};
  //   String[] initialCallForHomeworkValues = getHomeworkDataForGrade();
@@ -68,7 +65,6 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
     AdUnit adToDisplay;
 
     View view;
-
 
     public String convertDateToHumanReadable(String originalDate) {
 
@@ -87,7 +83,6 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
 
         return formattedDate;
     }
-
 
     public void populateListOfDates(ArrayList<Map<String,String>> assignments) {
 
@@ -108,13 +103,7 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         }
     }
 
-
-
-
     private OnFragmentInteractionListener mListener;
-
-
-
 
     public HomeworkForGradeFragment() {
         // Required empty public constructor
@@ -170,8 +159,6 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-
 
                 SubjectHomeworkFragment subjectFrag = new SubjectHomeworkFragment();
 
@@ -236,13 +223,7 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
-
-
-
     private class GetHomeworkData extends AsyncTask<Void,Void,Void> {
-
-
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -259,8 +240,6 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
             Calendar c=new GregorianCalendar();
             c.add(Calendar.DATE, 30);
             Date endDate = c.getTime();
-
-
 
             if (grade.equals("grade8")) {
 
@@ -327,13 +306,8 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
                 HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
             }
 
-
-
-
-
             return null;
         }
-
 
         @Override
         protected void onPostExecute(Void result) {
@@ -348,11 +322,9 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
                     HomeworkForGradeFragment.this.mItems
             );
 
-
             HomeworkForGradeFragment.this.listView.setAdapter(listViewAdapter);
         }
     }
-
 
     public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
 
@@ -361,9 +333,7 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
         @Override
         protected Void doInBackground(Void... params) {
 
-
             System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
-
 
             GetAdImpressionController adController = new GetAdImpressionController();
             ad = adController.getAdImpression("android","1001","undefined");
@@ -371,12 +341,9 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
             return null;
         }
 
-
-
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
 
             HomeworkForGradeFragment.this.adToDisplay = ad;
 

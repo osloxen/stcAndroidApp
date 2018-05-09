@@ -61,7 +61,6 @@ public class ActivitiesResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         view = inflater.inflate(R.layout.fragment_activities_results, container, false);
 
         listView = view.findViewById(R.id.activitiesResultsListView);
@@ -77,9 +76,6 @@ public class ActivitiesResultsFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
-
-
 
     private class GetActivityDataFromCloud extends AsyncTask<Void,Void,Void> {
 
@@ -115,7 +111,6 @@ public class ActivitiesResultsFragment extends Fragment {
 
             return null;
         }
-
 
         @Override
         protected void onPostExecute(Void result) {

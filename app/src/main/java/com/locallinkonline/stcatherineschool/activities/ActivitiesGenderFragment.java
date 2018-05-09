@@ -21,7 +21,6 @@ import com.locallinkonline.stcatherineschool.R;
 
 public class ActivitiesGenderFragment extends android.app.Fragment {
 
-
     String[] allGenders = { "Girls", "Boys"};
 
     ListView listView;
@@ -41,8 +40,6 @@ public class ActivitiesGenderFragment extends android.app.Fragment {
 
         View view = inflater.inflate(R.layout.fragment_activities_gender, container, false);
 
-
-
         listView = view.findViewById(R.id.activitiesGenderListView);
 
         listViewAdapter = new ArrayAdapter<String>(
@@ -52,8 +49,6 @@ public class ActivitiesGenderFragment extends android.app.Fragment {
         );
 
         listView.setAdapter(listViewAdapter);
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -78,7 +73,6 @@ public class ActivitiesGenderFragment extends android.app.Fragment {
 
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;

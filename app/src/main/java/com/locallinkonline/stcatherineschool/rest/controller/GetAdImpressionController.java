@@ -1,17 +1,10 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
 import com.locallinkonline.stcatherineschool.rest.api.AdEngineApi;
-import com.locallinkonline.stcatherineschool.rest.api.LunchApi;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
-import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
-
 import java.io.IOException;
-import java.util.Date;
-
 import retrofit2.Call;
 import retrofit2.Response;
-
-
 
 public class GetAdImpressionController extends BaseAdEngineController {
 
