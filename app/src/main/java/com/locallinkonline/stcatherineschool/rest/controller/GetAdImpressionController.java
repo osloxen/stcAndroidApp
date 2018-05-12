@@ -16,7 +16,7 @@ public class GetAdImpressionController extends BaseAdEngineController {
         Response<AdUnit> response;
 
         try {
-                response = call.execute();
+            response = call.execute();
 
         } catch (IOException e) {
             response = null;

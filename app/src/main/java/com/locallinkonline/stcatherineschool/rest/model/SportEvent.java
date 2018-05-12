@@ -4,10 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by dberge on 3/10/18.
  */
 
+@Getter
+@NoArgsConstructor
 public class SportEvent {
 
     @SerializedName("date")
@@ -22,26 +27,6 @@ public class SportEvent {
     private String locationName;
     @SerializedName("locationAddress")
     private String locationAddress;
-
-    public SportEvent() {}
-
-    public Date getDate() {
-        return date;
-    }
-
-    public String getEventType() {
-        return eventType;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public String getStartTime() { return startTime; }
-
-    public String getLocationName() { return locationName; }
-
-    public String getLocationAddress() { return locationAddress; }
 
     public SportEvent getLoadingSportEvent() {
         SportEvent returnThisEvent = new SportEvent();

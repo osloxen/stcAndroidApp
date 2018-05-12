@@ -4,10 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by espaan on 3/5/18.
  */
 
+@Getter
+@NoArgsConstructor
 public class GradeschoolHomework {
     @SerializedName("date")
     private Date date;
@@ -33,8 +38,6 @@ public class GradeschoolHomework {
     private String spelling;
     @SerializedName("next special event")
     private String nextEvent;
-
-    public GradeschoolHomework() {}
 
     public String[] getAllHomeworkAsArray() {
         String[] resultArray = {"Reminder",
@@ -62,48 +65,5 @@ public class GradeschoolHomework {
         };
 
         return resultArray;
-    }
-
-
-    public Date getDate() {
-        return date;
-    }
-
-    public String getReminder() {
-        return reminder;
-    }
-
-    public String getReading() {
-        return reading;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public String getEnglish() {
-        return english;
-    }
-
-    public String getSpelling() {
-        return spelling;
-    }
-
-    public String getSocialStudies() {
-        return socialStudies;
-    }
-
-    public String getScience() { return science; };
-
-    public String getSpanish() {
-        return spanish;
-    }
-
-    public String getMusic() {
-        return music;
-    }
-
-    public String getNextEvent() {
-        return nextEvent;
     }
 }

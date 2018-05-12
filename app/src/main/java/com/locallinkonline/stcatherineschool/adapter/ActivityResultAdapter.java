@@ -21,11 +21,9 @@ import java.text.SimpleDateFormat;
 
 public class ActivityResultAdapter extends ArrayAdapter<SportEvent> {
 
-
     public ActivityResultAdapter(@NonNull Context context, SportEvent[] events) {
         super(context, R.layout.activity_result_layout ,events);
     }
-
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {

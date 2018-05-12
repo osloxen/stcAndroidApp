@@ -57,11 +57,8 @@ public class SchoolActivityFragment extends android.app.Fragment {
 
     private class GetSchoolActivityData extends AsyncTask<Void,Void,Void> {
 
-
-
         @Override
         protected Void doInBackground(Void... params) {
-
 
             System.out.println("THIS IS ASYNC WORKING!!!");
 

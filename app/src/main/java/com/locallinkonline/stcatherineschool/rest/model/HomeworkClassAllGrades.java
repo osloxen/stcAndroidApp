@@ -4,8 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-
+@Getter
+@NoArgsConstructor
 public class HomeworkClassAllGrades {
     @SerializedName("date")
     private Date date;
@@ -45,12 +48,6 @@ public class HomeworkClassAllGrades {
     private String spelling;
     @SerializedName("undefined")
     private String undefinedColumnHeader;
-
-
-
-    public HomeworkClassAllGrades() {}
-
-
 
     public String[] getAllGradeschoolHomeworkAsArray() {
         String[] resultArray = {
@@ -138,10 +135,8 @@ public class HomeworkClassAllGrades {
                 "Next Special Event",
                 getNextEvent()
         };
-
         return resultArray;
     }
-
 
     public String[] getSixthGradeHomeworkAsArray() {
         String[] resultArray = {
@@ -164,71 +159,6 @@ public class HomeworkClassAllGrades {
                 "Religion",
                 getReligion()
         };
-
         return resultArray;
-    }
-
-
-    public Date getDate() {
-
-        return date;
-    }
-
-    public String getReminder() {
-        return reminder;
-    }
-
-    public String getPreAlgebra() { return preAlgebra; }
-
-    public String getMath() { return math; }
-
-    public String getAlgebra() {
-        return algebra;
-    }
-
-    public String getAlgebraFundamentals() {
-        return algebraFundamentals;
-    }
-
-    public String getEnglish() {
-        return english;
-    }
-
-    public String getReading() {
-        return reading;
-    }
-
-    public String getMiddleSchoolMath() {
-        return middleSchoolMath;
-    }
-
-    public String getSocialStudiesMiddleSchool() {
-        return socialStudiesMiddleSchool;
-    }
-
-    public String getSocialStudiesGradeSchool() {
-        return socialStudiesGradeSchool;
-    }
-
-    public String getScience() { return science; };
-
-    public String getSpanish() {
-        return spanish;
-    }
-
-    public String getMusic() {
-        return music;
-    }
-
-    public String getReligion() { return religion; }
-
-    public String getSpelling() { return spelling; }
-
-    public String getCurrentProject() {
-        return currentProject;
-    }
-
-    public String getNextEvent() {
-        return nextEvent;
     }
 }

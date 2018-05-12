@@ -27,7 +27,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -108,8 +107,6 @@ public class ActivitiesFragment extends android.app.Fragment {
         );
 
         listView.setAdapter(listViewAdapter);
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
