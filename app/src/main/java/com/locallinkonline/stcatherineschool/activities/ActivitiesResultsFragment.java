@@ -1,36 +1,27 @@
 package com.locallinkonline.stcatherineschool.activities;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.locallinkonline.stcatherineschool.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
+import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
-import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
-import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
-import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 import com.locallinkonline.stcatherineschool.utilities.GetAdImpression;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * Created by dberge on 3/14/18.
@@ -42,7 +33,6 @@ public class ActivitiesResultsFragment extends Fragment {
     SportEvent[] events = {sportEvent.getLoadingSportEvent()};
 
     ListView listView;
-    ArrayAdapter<String> listViewAdapter;
     ActivityResultAdapter eventListAdapter;
 
     String activity;

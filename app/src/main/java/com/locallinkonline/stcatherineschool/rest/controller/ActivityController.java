@@ -1,12 +1,9 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
 import com.locallinkonline.stcatherineschool.rest.api.ActivityApi;
-import com.locallinkonline.stcatherineschool.rest.api.ScheduleApi;
 import com.locallinkonline.stcatherineschool.rest.model.Activities;
-import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 
 import java.io.IOException;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Response;

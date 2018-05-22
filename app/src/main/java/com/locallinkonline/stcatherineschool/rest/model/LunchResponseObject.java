@@ -4,19 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by dberge on 3/8/18.
  */
 
+@NoArgsConstructor
+@Getter
 public class LunchResponseObject {
     @SerializedName("alexaResponse")
     private String alexaResponse;
     @SerializedName("lunchScheduleArray")
-    private List<Lunch> lunchScheduleArray;
-
-    public List<Lunch> getLunchScheduleList() { return lunchScheduleArray; }
-
-    public Lunch[] getLunchAsArray() {
-        return lunchScheduleArray.toArray(new Lunch[lunchScheduleArray.size()]);
-    }
+    private List<Lunch> lunchScheduleList;
 }

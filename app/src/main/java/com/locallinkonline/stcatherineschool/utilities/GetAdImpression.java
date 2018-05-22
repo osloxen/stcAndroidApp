@@ -19,7 +19,6 @@ public class GetAdImpression extends AsyncTask<String,Void,AdUnit> {
 
     @Override
     protected AdUnit doInBackground(String... params) {
-        System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
         return adController.getAdImpression("android","1001","undefined");
     }
 
@@ -27,7 +26,7 @@ public class GetAdImpression extends AsyncTask<String,Void,AdUnit> {
     protected void onPostExecute(AdUnit result) {
         TextView adDisplay;
         adDisplay = this.fragment.getView().findViewById(R.id.localLinkAdBusiness);
-        String adDisplayString = result.getBusiness() + "\n" + result.getAdText();
+        String adDisplayString = result != null ? result.getBusiness() + "\n" + result.getAdText() : "";
         adDisplay.setText(adDisplayString);
     }
 }

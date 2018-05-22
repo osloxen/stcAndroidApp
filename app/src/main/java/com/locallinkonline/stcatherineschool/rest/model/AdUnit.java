@@ -4,8 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-
+@NoArgsConstructor
+@Getter
 public class AdUnit {
     @SerializedName("businessId")
     private String businessId;
@@ -15,20 +18,6 @@ public class AdUnit {
     private String adTitle;
     @SerializedName("adText")
     private String adText;
-
-    public AdUnit() {}
-
-    public String getBusiness() {
-        return business;
-    }
-
-    public String getAdTitle() {
-        return adTitle;
-    }
-
-    public String getAdText() {
-        return adText;
-    }
 
     public AdUnit waitForAdUnitToLoad() {
         AdUnit waitForAdToLoad = new AdUnit();

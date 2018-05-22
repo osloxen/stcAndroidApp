@@ -33,8 +33,8 @@ public interface HomeworkApi {
 
     @GET("homework/{grade}")
     Call<GradeschoolHomeworkSchedule> getGradeschoolHomework(@Path("grade") String grade,
-                                                        @Query("startDate") String startDate,
-                                                        @Query("endDate") String endDate);
+                                                             @Query("startDate") String startDate,
+                                                             @Query("endDate") String endDate);
 
     @GET("homework/grade6")
     Call<SixthGradeHomeworkSchedule> getSixthGradeHomework(@Query("startDate") String startDate,

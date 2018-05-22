@@ -11,24 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
-import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
 import com.locallinkonline.stcatherineschool.rest.controller.LunchController;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
-import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.utilities.GetAdImpression;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-
-
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +33,8 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class LunchFragment extends android.app.Fragment {
+
+    private final GetAdImpression adImpressionRetriever;
 
     String[] mItems = {"Loading..."};
     String[] allLunches = {"Loading..."};
@@ -69,9 +65,7 @@ public class LunchFragment extends android.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public LunchFragment() {
-        // Required empty public constructor
-    }
+    public LunchFragment() { this.adImpressionRetriever = new GetAdImpression(this); }
 
     /**
      * Use this factory method to create a new instance of
@@ -119,9 +113,7 @@ public class LunchFragment extends android.app.Fragment {
 //        listView.setAdapter(listViewAdapter);
         listView.setAdapter(lunchViewAdapter);
 
-        String foo;
-
-        new GetAdImpression().execute();
+        adImpressionRetriever.execute();
 
         new GetLunchData().execute();
 
@@ -187,7 +179,6 @@ public class LunchFragment extends android.app.Fragment {
 
 
             LunchController lunchController = new LunchController();
-            //            List<Lunch> lunchList = lunchController.getLunches(startDate,endDate);
             LunchResponseObject lunchFromCloud = lunchController.getLunches(startDate,endDate);
             List<Lunch> lunchList = lunchFromCloud.getLunchScheduleList();
             List<String> updateLunchesWithThisArray = new ArrayList<>();
@@ -199,18 +190,14 @@ public class LunchFragment extends android.app.Fragment {
             }
 
             LunchFragment.this.allLunches = updateLunchesWithThisArray.toArray(new String[updateLunchesWithThisArray.size()]);
-            LunchFragment.this.lunches = lunchFromCloud.getLunchAsArray();
-
-
+            LunchFragment.this.lunches = lunchList.toArray(new Lunch[lunchList.size()]);
 
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
 
               listViewAdapter = new ArrayAdapter<String>(
                       getActivity(),
@@ -228,45 +215,4 @@ public class LunchFragment extends android.app.Fragment {
 
         }
     }
-
-
-
-
-    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
-
-        AdUnit ad;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-
-            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
-
-
-            GetAdImpressionController adController = new GetAdImpressionController();
-            ad = adController.getAdImpression("android","1001","undefined");
-
-            return null;
-        }
-
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-
-            LunchFragment.this.adToDisplay = ad;
-
-            TextView adDisplay;
-
-            adDisplay = LunchFragment.this.view.findViewById(R.id.localLinkAdBusiness);
-
-            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
-
-            adDisplay.setText(adDisplayString);
-        }
-    }
-
-
 }
