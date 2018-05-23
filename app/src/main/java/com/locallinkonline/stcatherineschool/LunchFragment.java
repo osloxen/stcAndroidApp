@@ -2,27 +2,17 @@ package com.locallinkonline.stcatherineschool;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
-import com.locallinkonline.stcatherineschool.rest.controller.LunchController;
-import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
-import com.locallinkonline.stcatherineschool.rest.model.Lunch;
-import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
-import com.locallinkonline.stcatherineschool.utilities.GetAdImpression;
+import com.locallinkonline.stcatherineschool.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.tasks.GetLunchDataTask;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,25 +24,11 @@ import java.util.List;
  */
 public class LunchFragment extends android.app.Fragment {
 
-    private final GetAdImpression adImpressionRetriever;
-
-    String[] mItems = {"Loading..."};
-    String[] allLunches = {"Loading..."};
-
-    AdUnit adToDisplay;
+    private final GetAdImpressionTask adImpressionRetriever;
+    private final GetLunchDataTask lunchDataRetriever;
 
     View view;
-
-    Lunch loadingLunchObject = new Lunch();
-    Lunch[] lunches = {loadingLunchObject.waitForLunchToLoad()};
-
-    //List<Lunch> allLunches = new List<Lunch>();
-    ArrayList<String> listOfLunches = new ArrayList<>();
-
     ListView listView;
-    ArrayAdapter<String> listViewAdapter;
-
-    LunchDisplayAdapter lunchViewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,7 +41,10 @@ public class LunchFragment extends android.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public LunchFragment() { this.adImpressionRetriever = new GetAdImpression(this); }
+    public LunchFragment() {
+        this.adImpressionRetriever = new GetAdImpressionTask(this);
+        this.lunchDataRetriever = new GetLunchDataTask(this);
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -102,23 +81,13 @@ public class LunchFragment extends android.app.Fragment {
 
         listView = view.findViewById(R.id.lunchDetailsListView);
 
-        listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                allLunches
-        );
-
-        lunchViewAdapter = new LunchDisplayAdapter(this.getContext(),lunches);
-
-//        listView.setAdapter(listViewAdapter);
-        listView.setAdapter(lunchViewAdapter);
-
         adImpressionRetriever.execute();
 
-        new GetLunchData().execute();
+        Date startDate = new Date();
+        long ltime=startDate.getTime()+8*24*60*60*1000;
+        Date endDate=new Date(ltime);
 
-//        listView.invalidateViews();
-
+        lunchDataRetriever.execute(startDate, endDate);
 
         return view;
     }
@@ -162,57 +131,7 @@ public class LunchFragment extends android.app.Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
-
-    private class GetLunchData extends AsyncTask<Void,Void,Void> {
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-
-            System.out.println("THIS IS ASYNC WORKING!!!");
-
-            // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date startDate = new Date();
-            long ltime=startDate.getTime()+8*24*60*60*1000;
-            Date endDate=new Date(ltime);
-
-
-            LunchController lunchController = new LunchController();
-            LunchResponseObject lunchFromCloud = lunchController.getLunches(startDate,endDate);
-            List<Lunch> lunchList = lunchFromCloud.getLunchScheduleList();
-            List<String> updateLunchesWithThisArray = new ArrayList<>();
-
-            for(Lunch lunch : lunchList) {
-
-                Log.d("Lunch Description: ", lunch.getDescription());
-                updateLunchesWithThisArray.add(lunch.getDescription());
-            }
-
-            LunchFragment.this.allLunches = updateLunchesWithThisArray.toArray(new String[updateLunchesWithThisArray.size()]);
-            LunchFragment.this.lunches = lunchList.toArray(new Lunch[lunchList.size()]);
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-              listViewAdapter = new ArrayAdapter<String>(
-                      getActivity(),
-                      android.R.layout.simple_list_item_1,
-                      LunchFragment.this.allLunches
-              );
-
-            lunchViewAdapter = new LunchDisplayAdapter(LunchFragment.this.getContext(),lunches);
-
-            Log.d("postExecute", Arrays.toString(LunchFragment.this.allLunches));
-
-            listView.setAdapter(lunchViewAdapter);
-
-
-
-        }
+    public ListView getMainListView() {
+        return this.listView;
     }
 }

@@ -4,10 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by espaan on 3/5/18.
  */
-
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lunch {
     @SerializedName("date")
     private Date date;
@@ -15,26 +21,4 @@ public class Lunch {
     private boolean available;
     @SerializedName("lunchDescription")
     private String description;
-
-    public Lunch() {}
-
-    public Date getDate() {
-        return date;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Lunch waitForLunchToLoad() {
-        Lunch waitForLunchToLoad = new Lunch();
-        waitForLunchToLoad.date = new Date();
-        waitForLunchToLoad.description = "loading...";
-
-        return waitForLunchToLoad;
-    }
 }

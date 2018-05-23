@@ -2,6 +2,7 @@ package com.locallinkonline.stcatherineschool.rest.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -17,5 +18,5 @@ public class LunchResponseObject {
     @SerializedName("alexaResponse")
     private String alexaResponse;
     @SerializedName("lunchScheduleArray")
-    private List<Lunch> lunchScheduleList;
+    private ArrayList<Lunch> lunchScheduleList;
 }

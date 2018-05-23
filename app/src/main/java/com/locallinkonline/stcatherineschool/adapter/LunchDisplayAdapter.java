@@ -24,7 +24,6 @@ public class LunchDisplayAdapter extends ArrayAdapter<Lunch> {
         super(context, R.layout.homework_subject_header ,homework);
     }
 
-
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
@@ -35,13 +34,11 @@ public class LunchDisplayAdapter extends ArrayAdapter<Lunch> {
 
         Lunch currentLunch = getItem(position);
 
-        TextView dateTV = (TextView) homeworkListView.findViewById(R.id.lunchDateTV);
-        TextView menuItemTV = (TextView) homeworkListView.findViewById(R.id.lunchMenuTV);
-
+        TextView dateTV = homeworkListView.findViewById(R.id.lunchDateTV);
+        TextView menuItemTV = homeworkListView.findViewById(R.id.lunchMenuTV);
 
         dateTV.setText(sdf.format(currentLunch.getDate()));
         menuItemTV.setText(currentLunch.getDescription());
-
 
         return homeworkListView;
     }

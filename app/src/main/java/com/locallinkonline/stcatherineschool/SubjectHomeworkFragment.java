@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
-import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
+import com.locallinkonline.stcatherineschool.tasks.GetAdImpressionTask;
 
 
 import java.util.ArrayList;
@@ -33,6 +33,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class SubjectHomeworkFragment extends android.app.Fragment {
+
+    private final GetAdImpressionTask adImpressionRetriever;
 
     String[] arrayForListView = {"Loading..."};
 
@@ -55,10 +57,8 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
 
     View view;
 
-    AdUnit adToDisplay;
-
     public SubjectHomeworkFragment() {
-        // Required empty public constructor
+        this.adImpressionRetriever = new GetAdImpressionTask(this);
     }
 
     /**
@@ -121,7 +121,7 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
             arrayForListView = homeworkToPresent.getAllGradeschoolHomeworkAsArray();
         }
 
-        new GetAdImpression().execute();
+        adImpressionRetriever.execute();
 
         HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(),arrayForListView);
 
@@ -189,41 +189,4 @@ public class SubjectHomeworkFragment extends android.app.Fragment {
     }
 
     private SubjectHomeworkFragment.OnFragmentInteractionListener mListener;
-
-
-    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
-
-        AdUnit ad;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-
-            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
-
-
-            GetAdImpressionController adController = new GetAdImpressionController();
-            ad = adController.getAdImpression("android","1001","undefined");
-
-            return null;
-        }
-
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-
-            SubjectHomeworkFragment.this.adToDisplay = ad;
-
-            TextView adDisplay;
-
-            adDisplay = SubjectHomeworkFragment.this.view.findViewById(R.id.homeworkLocalLinkAd);
-
-            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
-
-            adDisplay.setText(adDisplayString);
-        }
-    }
 }

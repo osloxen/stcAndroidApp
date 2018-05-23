@@ -25,7 +25,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import com.locallinkonline.stcatherineschool.rest.controller.GetAdImpressionController;
 import com.locallinkonline.stcatherineschool.rest.controller.GradeschoolHomeworkController;
 import com.locallinkonline.stcatherineschool.rest.controller.HomeworkController;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
@@ -325,38 +324,4 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
             HomeworkForGradeFragment.this.listView.setAdapter(listViewAdapter);
         }
     }
-
-    public class GetAdImpression  extends AsyncTask<Void,Void,Void> {
-
-        AdUnit ad;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            System.out.println("THIS IS ASYNC WORKING in Get Ad Impression!!!");
-
-            GetAdImpressionController adController = new GetAdImpressionController();
-            ad = adController.getAdImpression("android","1001","undefined");
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            HomeworkForGradeFragment.this.adToDisplay = ad;
-
-            TextView adDisplay;
-
-            adDisplay = HomeworkForGradeFragment.this.view.findViewById(R.id.homeworkLocalLinkAd);
-
-            String adDisplayString = ad.getBusiness() + "\n" + ad.getAdText();
-
-            adDisplay.setText(adDisplayString);
-        }
-    }
-
-
-
 }

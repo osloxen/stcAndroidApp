@@ -2,12 +2,10 @@ package com.locallinkonline.stcatherineschool.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.R;
@@ -35,12 +33,12 @@ public class ActivityResultAdapter extends ArrayAdapter<SportEvent> {
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
 
-        TextView notes = (TextView) eventsListView.findViewById(R.id.notesTextView);
-        TextView startTime = (TextView) eventsListView.findViewById(R.id.startTimeTextView);
-        TextView endTime = (TextView) eventsListView.findViewById(R.id.endTimeTextView);
-        TextView date = (TextView) eventsListView.findViewById(R.id.dateTextView);
-        TextView locationName = (TextView) eventsListView.findViewById(R.id.locationNameTextView);
-        TextView locationAddress = (TextView) eventsListView.findViewById(R.id.locationAddressTextView);
+        TextView notes = eventsListView.findViewById(R.id.notesTextView);
+        TextView startTime = eventsListView.findViewById(R.id.startTimeTextView);
+        TextView endTime = eventsListView.findViewById(R.id.endTimeTextView);
+        TextView date = eventsListView.findViewById(R.id.dateTextView);
+        TextView locationName = eventsListView.findViewById(R.id.locationNameTextView);
+        TextView locationAddress = eventsListView.findViewById(R.id.locationAddressTextView);
 
 
         notes.setText(currentEventInArray.getNotes());

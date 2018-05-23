@@ -1,17 +1,22 @@
-package com.locallinkonline.stcatherineschool.rest.controller;
+package com.locallinkonline.stcatherineschool.tasks;
+
+import android.app.Fragment;
+import android.os.AsyncTask;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.api.AdEngineApi;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
-import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GetAdImpressionController {
+public class GetAdImpressionTask extends AsyncTask<String,Void,AdUnit> {
 
     private final String baseUrl = "https://lndj19ck3k.execute-api.us-east-1.amazonaws.com/march2018green/";
     private final Gson gson = new GsonBuilder().setLenient().create();
@@ -22,7 +27,26 @@ public class GetAdImpressionController {
 
     private static AdUnit ad;
 
-    public AdUnit getAdImpression(String platform, String schoolId, String impressionLocation) {
+    private final Fragment fragment;
+
+    public GetAdImpressionTask(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    @Override
+    protected AdUnit doInBackground(String... params) {
+        return getAdImpression("android","1001","undefined");
+    }
+
+    @Override
+    protected void onPostExecute(AdUnit result) {
+        TextView adDisplay;
+        adDisplay = this.fragment.getView().findViewById(R.id.localLinkAdBusiness);
+        String adDisplayString = result != null ? result.getBusiness() + "\n" + result.getAdText() : "";
+        adDisplay.setText(adDisplayString);
+    }
+
+    private AdUnit getAdImpression(String platform, String schoolId, String impressionLocation) {
 
         AdEngineApi adEngineApi = retrofit.create(AdEngineApi.class);
 
