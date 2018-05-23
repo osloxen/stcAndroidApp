@@ -15,7 +15,7 @@ import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
-import com.locallinkonline.stcatherineschool.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 
 import java.util.Arrays;
 import java.util.Calendar;

@@ -2,7 +2,6 @@ package com.locallinkonline.stcatherineschool;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
-import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
-import com.locallinkonline.stcatherineschool.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 
 
 import java.util.ArrayList;

@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.locallinkonline.stcatherineschool.tasks.GetAdImpressionTask;
-import com.locallinkonline.stcatherineschool.tasks.GetLunchDataTask;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetLunchDataTask;
 
 import java.util.Date;
 

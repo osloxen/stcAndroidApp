@@ -1,13 +1,11 @@
-package com.locallinkonline.stcatherineschool.tasks;
+package com.locallinkonline.stcatherineschool.rest.tasks;
 
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

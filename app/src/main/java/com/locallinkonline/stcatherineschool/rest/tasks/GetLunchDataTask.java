@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool.tasks;
+package com.locallinkonline.stcatherineschool.rest.tasks;
 
 import com.locallinkonline.stcatherineschool.LunchFragment;
 import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
@@ -34,7 +34,10 @@ public class GetLunchDataTask extends SchoolDataTask<Date, Void, LunchResponseOb
 
     @Override
     protected void onPostExecute(LunchResponseObject response) {
-        fragment.getMainListView().setAdapter(new LunchDisplayAdapter(fragment.getContext(), response.getLunchScheduleList().toArray(new Lunch[response.getLunchScheduleList().size()])));
+        fragment.getMainListView().setAdapter(
+                new LunchDisplayAdapter(fragment.getContext(),
+                                        response.getLunchScheduleList().toArray(
+                                                new Lunch[response.getLunchScheduleList().size()])));
     }
 
     private LunchResponseObject getLunches(Date startDate, Date endDate) {

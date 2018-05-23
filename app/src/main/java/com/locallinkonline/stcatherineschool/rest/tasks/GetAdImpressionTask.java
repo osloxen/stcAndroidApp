@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool.tasks;
+package com.locallinkonline.stcatherineschool.rest.tasks;
 
 import android.app.Fragment;
 import android.os.AsyncTask;
