@@ -14,8 +14,7 @@ public class EighthGradeHomeworkSchedule {
     private String alexaResponse;
     @SerializedName("homeworkArray")
     private List<HomeworkClassAllGrades> homeworkList;
-
-
+    
     public EighthGradeHomeworkSchedule() {}
 
     public List<HomeworkClassAllGrades> getHomeworkList() { return homeworkList; }

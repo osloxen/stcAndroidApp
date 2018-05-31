@@ -42,7 +42,7 @@ public class HomeworkController extends BaseController {
             });
             */
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             response = null;
         }
 

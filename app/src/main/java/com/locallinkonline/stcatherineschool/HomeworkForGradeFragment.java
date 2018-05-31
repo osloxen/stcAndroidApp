@@ -244,65 +244,77 @@ public class HomeworkForGradeFragment extends android.app.Fragment {
 
                 HomeworkController homeworkController = new HomeworkController();
                 EighthGradeHomeworkSchedule homeworkFromCloud = homeworkController.getHomeworkEigthGrade(startDate,endDate);
-                List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
-                List<String> addDatesToThisArray = new ArrayList<>();
 
-                for(HomeworkClassAllGrades homework : homeworkList) {
+                if(homeworkFromCloud != null) {
+                    List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
+                    List<String> addDatesToThisArray = new ArrayList<>();
 
-                    Log.d("Date: ", homework.getDate().toString());
-                    addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    for(HomeworkClassAllGrades homework : homeworkList) {
+
+                        Log.d("Date: ", homework.getDate().toString());
+                        addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    }
+
+                    HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
+                    HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
                 }
-
-                HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
-                HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
 
             } else if (grade.equals("grade7")) {
 
                 HomeworkController homeworkController = new HomeworkController();
                 SeventhGradeHomeworkSchedule homeworkFromCloud = homeworkController.getHomeworkSeventhGrade(startDate,endDate);
-                List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
-                List<String> addDatesToThisArray = new ArrayList<>();
 
-                for(HomeworkClassAllGrades homework : homeworkList) {
+                if(homeworkFromCloud != null) {
+                    List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
+                    List<String> addDatesToThisArray = new ArrayList<>();
 
-                    Log.d("Date: ", homework.getDate().toString());
-                    addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    for (HomeworkClassAllGrades homework : homeworkList) {
+
+                        Log.d("Date: ", homework.getDate().toString());
+                        addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    }
+
+                    HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
+                    HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
                 }
-
-                HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
-                HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
 
             } else if (grade.equals("grade6")) {
 
                 HomeworkController homeworkController = new HomeworkController();
                 SixthGradeHomeworkSchedule homeworkFromCloud = homeworkController.getHomeworkSixthGrade(startDate,endDate);
-                List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
-                List<String> addDatesToThisArray = new ArrayList<>();
 
-                for(HomeworkClassAllGrades homework : homeworkList) {
+                if(homeworkFromCloud != null) {
+                    List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
+                    List<String> addDatesToThisArray = new ArrayList<>();
 
-                    Log.d("Date: ", homework.getDate().toString());
-                    addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    for (HomeworkClassAllGrades homework : homeworkList) {
+
+                        Log.d("Date: ", homework.getDate().toString());
+                        addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    }
+
+                    HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
+                    HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
                 }
-
-                HomeworkForGradeFragment.this.middleSchoolHomeworkList = homeworkList;
-                HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
 
             } else {
 
                 GradeschoolHomeworkController homeworkController = new GradeschoolHomeworkController();
                 GradeschoolHomeworkSchedule homeworkFromCloud = homeworkController.getHomework(grade, startDate,endDate);
-                List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
-                List<String> addDatesToThisArray = new ArrayList<>();
 
-                for(HomeworkClassAllGrades homework : homeworkList) {
+                if(homeworkFromCloud != null) {
+                    List<HomeworkClassAllGrades> homeworkList = homeworkFromCloud.getHomeworkList();
+                    List<String> addDatesToThisArray = new ArrayList<>();
 
-                    Log.d("Date: ", homework.getDate().toString());
-                    addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    for (HomeworkClassAllGrades homework : homeworkList) {
+
+                        Log.d("Date: ", homework.getDate().toString());
+                        addDatesToThisArray.add(dateFormat.format(homework.getDate()));
+                    }
+
+                    HomeworkForGradeFragment.this.gradeSchoolHomeworkList = homeworkList;
+                    HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
                 }
-
-                HomeworkForGradeFragment.this.gradeSchoolHomeworkList = homeworkList;
-                HomeworkForGradeFragment.this.mItems = addDatesToThisArray.toArray(new String[addDatesToThisArray.size()]);
             }
 
             return null;
