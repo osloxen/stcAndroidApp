@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.controller.GradeschoolHomeworkController;
 import com.locallinkonline.stcatherineschool.rest.controller.HomeworkController;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;

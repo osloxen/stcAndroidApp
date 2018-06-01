@@ -1,6 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.tasks;
 
-import com.locallinkonline.stcatherineschool.activities.SchoolActivityFragment;
+import com.locallinkonline.stcatherineschool.fragment.SchoolActivityFragment;
 import com.locallinkonline.stcatherineschool.rest.api.ActivityApi;
 import com.locallinkonline.stcatherineschool.rest.model.Activities;
 

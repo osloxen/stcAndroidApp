@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool.activities;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;

@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool;
+package com.locallinkonline.stcatherineschool.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -11,14 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.locallinkonline.stcatherineschool.activities.ActivitiesFragment;
+import com.locallinkonline.stcatherineschool.fragment.GradesHomeworkFragment;
+import com.locallinkonline.stcatherineschool.fragment.HomeworkForGradeFragment;
+import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
+import com.locallinkonline.stcatherineschool.R;
+import com.locallinkonline.stcatherineschool.fragment.SubjectHomeworkFragment;
+import com.locallinkonline.stcatherineschool.fragment.ActivitiesFragment;
 
 public class HomeActivity extends AppCompatActivity implements
-                                                        GradesHomeworkFragment.OnFragmentInteractionListener,
+        GradesHomeworkFragment.OnFragmentInteractionListener,
                                                         ActivitiesFragment.OnFragmentInteractionListener,
-                                                        LunchFragment.OnFragmentInteractionListener,
-                                                        HomeworkForGradeFragment.OnFragmentInteractionListener,
-                                                        SubjectHomeworkFragment.OnFragmentInteractionListener {
+        LunchFragment.OnFragmentInteractionListener,
+        HomeworkForGradeFragment.OnFragmentInteractionListener,
+        SubjectHomeworkFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     private void setupNavigationView() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         if (bottomNavigationView != null) {
             // Select first menu item by default and show Fragment accordingly.
             Menu menu = bottomNavigationView.getMenu();

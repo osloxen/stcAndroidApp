@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.locallinkonline.stcatherineschool.R;
 
 import java.io.IOException;
 import java.io.InputStream;

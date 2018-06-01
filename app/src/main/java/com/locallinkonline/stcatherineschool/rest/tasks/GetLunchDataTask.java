@@ -1,6 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.tasks;
 
-import com.locallinkonline.stcatherineschool.LunchFragment;
+import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
 import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
 import com.locallinkonline.stcatherineschool.rest.api.LunchApi;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;

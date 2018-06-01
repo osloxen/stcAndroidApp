@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetLunchDataTask;
 

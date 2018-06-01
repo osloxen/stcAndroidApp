@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool.activities;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -19,56 +19,36 @@ import com.locallinkonline.stcatherineschool.R;
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesGradesFragment extends android.app.Fragment {
+public class ActivitiesGenderFragment extends android.app.Fragment {
 
-
-    String[] allGrades = { "Grade 8",
-            "Grade 7",
-            "Grade 6",
-            "Grade 5",
-            "Grade 4",
-            "Grade 3",
-            "Grade 2",
-            "Grade 1",
-            "Kindergarten"};
+    String[] allGenders = { "Girls", "Boys"};
 
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
 
     String activity;
+    String grade;
 
-    public ActivitiesGradesFragment() {
+    public ActivitiesGenderFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_activities_grades, container, false);
+        View view = inflater.inflate(R.layout.fragment_activities_gender, container, false);
 
-
-        /*
-        DAVID ADD ALL THE CREATE VIEW FROM LUNCHES HERE.
-
-        DON'T FORGET YOU NEED TO LIST THE SPORTS AND GRADES EVENTUALLY
-         */
-
-
-
-        listView = view.findViewById(R.id.activitesGradesListView);
+        listView = view.findViewById(R.id.activitiesGenderListView);
 
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                allGrades
+                allGenders
         );
 
         listView.setAdapter(listViewAdapter);
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -79,26 +59,23 @@ public class ActivitiesGradesFragment extends android.app.Fragment {
 
                 Log.d("position", Integer.toString(position));
                 Log.d("id", Long.toString(id));
-                Log.d("string value: ", allGrades[position]);
+                Log.d("string value: ", allGenders[position]);
 
 
-                ActivitiesGenderFragment actGenderFragment = new ActivitiesGenderFragment();
-                actGenderFragment.activity = activity;
-                actGenderFragment.grade = allGrades[position].toLowerCase().replaceAll("\\s+","");
+                ActivitiesResultsFragment actResultsFragment = new ActivitiesResultsFragment();
+                actResultsFragment.grade = grade;
+                actResultsFragment.activity = activity;
+                actResultsFragment.gender = allGenders[position].toLowerCase();
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.rootActivityView, actGenderFragment).commit();
+                fragmentTransaction.replace(R.id.rootActivityView, actResultsFragment).commit();
 
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;
 
     }
-
-
-
-} // end of ActivitiesGradesFragment
+}

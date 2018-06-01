@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.locallinkonline.stcatherineschool.activities.ActivitiesFragment">
+    tools:context="com.locallinkonline.stcatherineschool.fragment.ActivitiesFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

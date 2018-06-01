@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool;
+package com.locallinkonline.stcatherineschool.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
+import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
