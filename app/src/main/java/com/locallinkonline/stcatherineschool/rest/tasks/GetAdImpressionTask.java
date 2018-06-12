@@ -1,6 +1,5 @@
 package com.locallinkonline.stcatherineschool.rest.tasks;
 
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -10,6 +9,7 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.api.AdEngineApi;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 
+import androidx.fragment.app.Fragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

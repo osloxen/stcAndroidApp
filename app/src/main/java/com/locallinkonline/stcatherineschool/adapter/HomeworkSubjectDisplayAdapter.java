@@ -1,7 +1,6 @@
 package com.locallinkonline.stcatherineschool.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 
-import java.text.SimpleDateFormat;
+import androidx.annotation.NonNull;
 
 /**
  * Created by dberge on 3/15/18.

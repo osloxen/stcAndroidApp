@@ -3,7 +3,6 @@ package com.locallinkonline.stcatherineschool.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import com.locallinkonline.stcatherineschool.rest.tasks.GetLunchDataTask;
 
 import java.util.Date;
 
+import androidx.fragment.app.Fragment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -23,7 +24,7 @@ import java.util.Date;
  * Use the {@link LunchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LunchFragment extends android.app.Fragment {
+public class LunchFragment extends Fragment {
 
     private final GetAdImpressionTask adImpressionRetriever;
     private final GetLunchDataTask lunchDataRetriever;

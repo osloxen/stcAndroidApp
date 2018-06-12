@@ -1,7 +1,5 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +13,15 @@ import android.widget.Toast;
 
 import com.locallinkonline.stcatherineschool.R;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 /**
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesGradesFragment extends android.app.Fragment {
+public class ActivitiesGradesFragment extends Fragment {
 
 
     String[] allGrades = { "Grade 8",

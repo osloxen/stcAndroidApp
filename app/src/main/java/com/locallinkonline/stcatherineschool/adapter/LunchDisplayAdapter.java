@@ -1,7 +1,6 @@
 package com.locallinkonline.stcatherineschool.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 
 import java.text.SimpleDateFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by dberge on 3/15/18.

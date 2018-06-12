@@ -1,6 +1,5 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +20,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by dberge on 3/14/18.

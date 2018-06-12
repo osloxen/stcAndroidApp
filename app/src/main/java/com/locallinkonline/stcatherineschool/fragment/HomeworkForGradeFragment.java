@@ -1,7 +1,5 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -35,7 +33,11 @@ import com.locallinkonline.stcatherineschool.rest.model.SeventhGradeHomeworkSche
 import com.locallinkonline.stcatherineschool.rest.model.SixthGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 
-public class HomeworkForGradeFragment extends android.app.Fragment {
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+public class HomeworkForGradeFragment extends Fragment {
 
 
     // TODO: Rename parameter arguments, choose names that match

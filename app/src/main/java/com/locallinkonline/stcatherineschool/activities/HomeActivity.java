@@ -1,26 +1,27 @@
 package com.locallinkonline.stcatherineschool.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.locallinkonline.stcatherineschool.fragment.GradesHomeworkFragment;
 import com.locallinkonline.stcatherineschool.fragment.HomeworkForGradeFragment;
 import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
+import com.locallinkonline.stcatherineschool.fragment.SelectActivityFragment;
 import com.locallinkonline.stcatherineschool.fragment.SubjectHomeworkFragment;
-import com.locallinkonline.stcatherineschool.fragment.ActivitiesFragment;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class HomeActivity extends AppCompatActivity implements
         GradesHomeworkFragment.OnFragmentInteractionListener,
-                                                        ActivitiesFragment.OnFragmentInteractionListener,
+                                                        SelectActivityFragment.OnFragmentInteractionListener,
         LunchFragment.OnFragmentInteractionListener,
         HomeworkForGradeFragment.OnFragmentInteractionListener,
         SubjectHomeworkFragment.OnFragmentInteractionListener {
@@ -57,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements
                 pushFragment(new GradesHomeworkFragment());
                 break;
             case R.id.navigation_activities:
-                pushFragment(new ActivitiesFragment());
+                pushFragment(new SelectActivityFragment());
                 break;
             case R.id.navigation_lunch:
                 pushFragment(new LunchFragment());
@@ -69,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements
         if (fragment == null)
             return;
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager != null) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
             if (ft != null) {

@@ -34,10 +34,13 @@ public class GetLunchDataTask extends SchoolDataTask<Date, Void, LunchResponseOb
 
     @Override
     protected void onPostExecute(LunchResponseObject response) {
-        fragment.getMainListView().setAdapter(
-                new LunchDisplayAdapter(fragment.getContext(),
-                                        response.getLunchScheduleList().toArray(
-                                                new Lunch[response.getLunchScheduleList().size()])));
+        if(response != null && response.getLunchScheduleList() != null) {
+            fragment.getMainListView().setAdapter(
+                    new LunchDisplayAdapter(fragment.getContext(),
+                            response.getLunchScheduleList().toArray(
+                                    new Lunch[response.getLunchScheduleList().size()])));
+        }
+
     }
 
     private LunchResponseObject getLunches(Date startDate, Date endDate) {
@@ -49,7 +52,7 @@ public class GetLunchDataTask extends SchoolDataTask<Date, Void, LunchResponseOb
 
         try {
             response = call.execute();
-        } catch (IOException e) {
+        } catch (Exception e) {
             response = null;
         }
 

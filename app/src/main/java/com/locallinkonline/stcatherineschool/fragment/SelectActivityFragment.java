@@ -1,12 +1,9 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,24 +18,28 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ActivitiesFragment.OnFragmentInteractionListener} interface
+ * {@link SelectActivityFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ActivitiesFragment#newInstance} factory method to
+ * Use the {@link SelectActivityFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ActivitiesFragment extends android.app.Fragment {
+public class SelectActivityFragment extends Fragment {
 
-
-    String[] mItems = {"Loading..."};
+    private final GetAdImpressionTask getAdTask;
     String[] allActivities = {"Volleyball", "Drama"};
 
     //List<Lunch> allLunches = new List<Lunch>();
@@ -46,7 +47,6 @@ public class ActivitiesFragment extends android.app.Fragment {
 
     ListView listView;
     ArrayAdapter<String> listViewAdapter;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,8 +59,8 @@ public class ActivitiesFragment extends android.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ActivitiesFragment() {
-        // Required empty public constructor
+    public SelectActivityFragment() {
+        this.getAdTask = new GetAdImpressionTask(this);
     }
 
     /**
@@ -69,11 +69,11 @@ public class ActivitiesFragment extends android.app.Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ActivitiesFragment.
+     * @return A new instance of fragment SelectActivityFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ActivitiesFragment newInstance(String param1, String param2) {
-        ActivitiesFragment fragment = new ActivitiesFragment();
+    public static SelectActivityFragment newInstance(String param1, String param2) {
+        SelectActivityFragment fragment = new SelectActivityFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -97,6 +97,7 @@ public class ActivitiesFragment extends android.app.Fragment {
 
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
 
+        getAdTask.execute();
 
         listView = view.findViewById(R.id.activitiesList);
 
@@ -143,11 +144,8 @@ public class ActivitiesFragment extends android.app.Fragment {
             }
         });
 
-
         // Inflate the layout for this fragment
         return view;
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -226,7 +224,7 @@ public class ActivitiesFragment extends android.app.Fragment {
                 updateScheduleWithThisArray.add(event.getNotes());
             }
 
-            ActivitiesFragment.this.allActivities = updateScheduleWithThisArray.toArray(new String[updateScheduleWithThisArray.size()]);
+            SelectActivityFragment.this.allActivities = updateScheduleWithThisArray.toArray(new String[updateScheduleWithThisArray.size()]);
 
             return null;
         }
@@ -236,18 +234,18 @@ public class ActivitiesFragment extends android.app.Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Log.d("postExecute", Arrays.toString(ActivitiesFragment.this.allActivities));
+            Log.d("postExecute", Arrays.toString(SelectActivityFragment.this.allActivities));
 
 
             listViewAdapter = new ArrayAdapter<String>(
                     getActivity(),
                     android.R.layout.simple_list_item_1,
-                    ActivitiesFragment.this.allActivities
+                    SelectActivityFragment.this.allActivities
             );
 
 
 
-            ActivitiesFragment.this.listView.setAdapter(listViewAdapter);
+            SelectActivityFragment.this.listView.setAdapter(listViewAdapter);
 
         }
     }

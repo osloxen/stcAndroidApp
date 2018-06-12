@@ -9,12 +9,13 @@ import android.widget.TextView;
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetSchoolActivityTask;
 
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by dberge on 3/18/18.
  */
 
-public class SchoolActivityFragment extends android.app.Fragment {
+public class SchoolActivityFragment extends Fragment {
 
     private final GetSchoolActivityTask schoolActivityData;
 

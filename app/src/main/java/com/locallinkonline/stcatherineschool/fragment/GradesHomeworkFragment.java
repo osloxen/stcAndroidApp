@@ -1,13 +1,9 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +28,11 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -40,7 +41,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Use the {@link GradesHomeworkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GradesHomeworkFragment extends android.app.Fragment {
+public class GradesHomeworkFragment extends Fragment {
 
     String[] mItems = { "Grade 8",
                         "Grade 7",
