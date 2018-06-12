@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by dberge on 1/15/18.
  */
 
-public class SchoolClassrooms {
+class SchoolClassrooms {
 
     public String date;
 

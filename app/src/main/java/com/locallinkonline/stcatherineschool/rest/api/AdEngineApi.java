@@ -1,7 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.api;
 
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
-import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

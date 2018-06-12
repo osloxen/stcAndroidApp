@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements
         }
     }
 
-    protected void selectFragment(MenuItem item) {
+    private void selectFragment(MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.navigation_homework:
@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity implements
         }
     }
 
-    protected void pushFragment(Fragment fragment) {
+    private void pushFragment(Fragment fragment) {
         if (fragment == null)
             return;
 

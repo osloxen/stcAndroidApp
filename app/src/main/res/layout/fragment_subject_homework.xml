@@ -5,22 +5,7 @@
     tools:context="com.locallinkonline.stcatherineschool.fragment.SubjectHomeworkFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-
-    <TextView
-        android:id="@+id/localLinkAdBusiness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_gravity="top"
-        android:text="@string/sample_ad"
-        android:textColor="@android:color/black"
-        android:includeFontPadding="false"
-        android:gravity="top"
-        android:textSize="18sp" />
-
+    <include layout="@layout/ad_unit"/>
     <ListView
         android:id="@+id/homeworkByGrade"
         android:layout_width="match_parent"

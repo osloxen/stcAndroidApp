@@ -29,17 +29,12 @@ public class LunchFragment extends Fragment {
     private final GetAdImpressionTask adImpressionRetriever;
     private final GetLunchDataTask lunchDataRetriever;
 
-    View view;
-    ListView listView;
+    private ListView listView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,8 +65,8 @@ public class LunchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -79,7 +74,7 @@ public class LunchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_lunch, container, false);
+        View view = inflater.inflate(R.layout.fragment_lunch, container, false);
 
         listView = view.findViewById(R.id.lunchDetailsListView);
 

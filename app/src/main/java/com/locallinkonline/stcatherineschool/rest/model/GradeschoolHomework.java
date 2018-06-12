@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class GradeschoolHomework {
+class GradeschoolHomework {
     @SerializedName("date")
     private Date date;
     @SerializedName("general reminder")
@@ -40,7 +40,8 @@ public class GradeschoolHomework {
     private String nextEvent;
 
     public String[] getAllHomeworkAsArray() {
-        String[] resultArray = {"Reminder",
+
+        return new String[]{"Reminder",
                                 getReminder(),
                                 "Math",
                                 getReading(),
@@ -63,7 +64,5 @@ public class GradeschoolHomework {
                                 "Next Special Event",
                                 getNextEvent()
         };
-
-        return resultArray;
     }
 }

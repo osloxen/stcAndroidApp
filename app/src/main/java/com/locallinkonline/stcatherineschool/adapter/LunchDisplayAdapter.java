@@ -11,6 +11,7 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 
@@ -25,6 +26,7 @@ public class LunchDisplayAdapter extends ArrayAdapter<Lunch> {
         super(context, R.layout.homework_subject_header ,homework);
     }
 
+    @NonNull
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
@@ -38,7 +40,7 @@ public class LunchDisplayAdapter extends ArrayAdapter<Lunch> {
         TextView dateTV = homeworkListView.findViewById(R.id.lunchDateTV);
         TextView menuItemTV = homeworkListView.findViewById(R.id.lunchMenuTV);
 
-        dateTV.setText(sdf.format(currentLunch.getDate()));
+        dateTV.setText(sdf.format(Objects.requireNonNull(currentLunch).getDate()));
         menuItemTV.setText(currentLunch.getDescription());
 
         return homeworkListView;

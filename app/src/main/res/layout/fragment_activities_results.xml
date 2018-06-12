@@ -7,20 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.locallinkonline.stcatherineschool.fragment.LunchFragment"
 android:orientation="vertical">
-
-
-    <TextView
-        android:id="@+id/localLinkAdBusiness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_gravity="top"
-        android:text="@string/sample_ad"
-        android:textColor="@android:color/black"
-        android:includeFontPadding="false"
-        android:gravity="top"
-        android:textSize="18sp" />
-
+    <include layout="@layout/ad_unit"/>
     <ListView
         android:id="@+id/activitiesResultsListView"
         android:layout_width="match_parent"

@@ -12,10 +12,10 @@ import retrofit2.Response;
 public class GetSchoolActivityTask extends SchoolDataTask<String, Void, Activities> {
 
     private static final int NOTES_INDEX = 3;
-    public static final int ANNOUNCEMENT_INDEX = 1;
+    private static final int ANNOUNCEMENT_INDEX = 1;
     private static final int REGULAR_SCHEDULE_INDEX = 5;
     private static final int PERFORMANCE_INDEX = 7;
-    public static final String LOADING = "Loading...";
+    private static final String LOADING = "Loading...";
 
     private final SchoolActivityFragment fragment;
 

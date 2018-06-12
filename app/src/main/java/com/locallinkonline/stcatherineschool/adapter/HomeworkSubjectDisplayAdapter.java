@@ -22,7 +22,7 @@ public class HomeworkSubjectDisplayAdapter extends ArrayAdapter<String> {
         super(context, R.layout.homework_subject_header ,homework);
     }
 
-
+    @NonNull
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
@@ -31,8 +31,8 @@ public class HomeworkSubjectDisplayAdapter extends ArrayAdapter<String> {
 
         String currentHomework = getItem(position);
 
-        TextView titleTV = (TextView) homeworkListView.findViewById(R.id.subjectTitleTV);
-        TextView homeworkTV = (TextView) homeworkListView.findViewById(R.id.homeworkTV);
+        TextView titleTV = homeworkListView.findViewById(R.id.subjectTitleTV);
+        TextView homeworkTV = homeworkListView.findViewById(R.id.homeworkTV);
 
 
         if ((position%2) == 0) {  // Check for odd number

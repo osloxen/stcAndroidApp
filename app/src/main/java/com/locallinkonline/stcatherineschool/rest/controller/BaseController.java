@@ -12,11 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by espaan on 3/5/18.
  */
 
-public abstract class BaseController {
-    protected final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    protected final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
-    protected final Gson gson = new GsonBuilder().setLenient().create();
-    protected final Retrofit retrofit = new Retrofit.Builder()
+abstract class BaseController {
+    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
+    private final Gson gson = new GsonBuilder().setLenient().create();
+    final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();

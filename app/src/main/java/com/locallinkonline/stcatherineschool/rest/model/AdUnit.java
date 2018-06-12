@@ -2,8 +2,6 @@ package com.locallinkonline.stcatherineschool.rest.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,12 +16,4 @@ public class AdUnit {
     private String adTitle;
     @SerializedName("adText")
     private String adText;
-
-    public AdUnit waitForAdUnitToLoad() {
-        AdUnit waitForAdToLoad = new AdUnit();
-        waitForAdToLoad.business = "loading...";
-        waitForAdToLoad.adText = "loading...";
-
-        return waitForAdToLoad;
-    }
 }

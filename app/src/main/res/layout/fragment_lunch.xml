@@ -6,26 +6,7 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/localLinkAdBusiness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20px"
-        android:paddingLeft="10px"
-        android:layout_gravity="top"
-        android:text="@string/sample_ad"
-        android:textColor="@android:color/black"
-        android:includeFontPadding="false"
-        android:gravity="top"
-        android:textSize="18sp"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"/>
-
-
-
+    <include layout="@layout/ad_unit"/>
     <ListView
         android:id="@+id/lunchDetailsListView"
         android:layout_gravity="bottom"

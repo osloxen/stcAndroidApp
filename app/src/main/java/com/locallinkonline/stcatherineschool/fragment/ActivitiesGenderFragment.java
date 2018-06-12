@@ -21,12 +21,9 @@ import androidx.fragment.app.FragmentTransaction;
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesGenderFragment extends Fragment {
+class ActivitiesGenderFragment extends Fragment {
 
-    String[] allGenders = { "Girls", "Boys"};
-
-    ListView listView;
-    ArrayAdapter<String> listViewAdapter;
+    private final String[] allGenders = { "Girls", "Boys"};
 
     String activity;
     String grade;
@@ -42,9 +39,9 @@ public class ActivitiesGenderFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_activities_gender, container, false);
 
-        listView = view.findViewById(R.id.activitiesGenderListView);
+        ListView listView = view.findViewById(R.id.activitiesGenderListView);
 
-        listViewAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 allGenders

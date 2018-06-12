@@ -6,7 +6,6 @@ import com.locallinkonline.stcatherineschool.rest.api.LunchApi;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 
-import java.io.IOException;
 import java.util.Date;
 
 import retrofit2.Call;

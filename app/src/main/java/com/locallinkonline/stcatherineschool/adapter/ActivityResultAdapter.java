@@ -11,6 +11,7 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 
@@ -24,6 +25,7 @@ public class ActivityResultAdapter extends ArrayAdapter<SportEvent> {
         super(context, R.layout.activity_result_layout ,events);
     }
 
+    @NonNull
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
@@ -42,7 +44,7 @@ public class ActivityResultAdapter extends ArrayAdapter<SportEvent> {
         TextView locationAddress = eventsListView.findViewById(R.id.locationAddressTextView);
 
 
-        notes.setText(currentEventInArray.getNotes());
+        notes.setText(Objects.requireNonNull(currentEventInArray).getNotes());
         startTime.setText(currentEventInArray.getStartTime());
         endTime.setText("end time goes here");
 //        date.setText(currentEventInArray.getDate().toString());

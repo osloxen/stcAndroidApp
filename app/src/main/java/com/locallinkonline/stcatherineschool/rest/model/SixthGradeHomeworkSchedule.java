@@ -4,27 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by dberge on 3/17/18.
- */
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 public class SixthGradeHomeworkSchedule {
 
     @SerializedName("alexaResponse")
     private String alexaResponse;
     @SerializedName("homeworkArray")
     private List<HomeworkClassAllGrades> homeworkList;
-
-
-    public SixthGradeHomeworkSchedule() {}
-
-    public List<HomeworkClassAllGrades> getHomeworkList() { return homeworkList; }
-
-    public HomeworkClassAllGrades[] getHomeworkAsArray() {
-
-        return homeworkList.toArray(new HomeworkClassAllGrades[homeworkList.size()]);
-    }
-
-
-
 }

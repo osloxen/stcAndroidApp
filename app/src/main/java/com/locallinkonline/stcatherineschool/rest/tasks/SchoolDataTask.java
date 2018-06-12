@@ -10,12 +10,12 @@ import java.text.SimpleDateFormat;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class SchoolDataTask<I, P, R> extends AsyncTask<I,P,R> {
+abstract class SchoolDataTask<I, P, R> extends AsyncTask<I,P,R> {
 
-    protected final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    protected final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
-    protected final Gson gson = new GsonBuilder().setLenient().create();
-    protected final Retrofit retrofit = new Retrofit.Builder()
+    final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
+    private final Gson gson = new GsonBuilder().setLenient().create();
+    final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();

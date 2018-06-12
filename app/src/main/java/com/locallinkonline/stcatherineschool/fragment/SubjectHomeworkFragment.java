@@ -34,8 +34,6 @@ public class SubjectHomeworkFragment extends Fragment {
 
     private final GetAdImpressionTask adImpressionRetriever;
 
-    String[] arrayForListView = {"Loading..."};
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,15 +43,12 @@ public class SubjectHomeworkFragment extends Fragment {
     public ArrayList<GradeEight> allHomework = new ArrayList<>();
     public Integer position;
 
-    ListView listView;
     ArrayAdapter<String> listViewAdapter;
 
     List<HomeworkClassAllGrades> gradeSchoolHomeworkList;
     List<HomeworkClassAllGrades> middleSchoolHomeworkList;
 
     String grade;
-
-    View view;
 
     public SubjectHomeworkFragment() {
         this.adImpressionRetriever = new GetAdImpressionTask(this);
@@ -86,42 +81,52 @@ public class SubjectHomeworkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_subject_homework, container, false);
+        View view = inflater.inflate(R.layout.fragment_subject_homework, container, false);
 
         // subjectsList
 //        listView = view.findViewById( R.id.subjectsList );
-        listView = view.findViewById( R.id.homeworkByGrade);
+        ListView listView = view.findViewById(R.id.homeworkByGrade);
 
-        if (grade.equals("grade8")) {
+        String[] arrayForListView;
+        switch (grade) {
+            case "grade8": {
 
-            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+                HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
 
-            arrayForListView = homeworkToPresent.getEigthGradeHomeworkAsArray();
-
-
-        } else if (grade.equals("grade7")) {
-
-            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
-
-            arrayForListView = homeworkToPresent.getSeventhGradeHomeworkAsArray();
-
-        } else if (grade.equals("grade6")) {
-
-            HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
-
-            arrayForListView = homeworkToPresent.getSixthGradeHomeworkAsArray();
-
-        } else {
+                arrayForListView = homeworkToPresent.getEigthGradeHomeworkAsArray();
 
 
-            HomeworkClassAllGrades homeworkToPresent = gradeSchoolHomeworkList.get(position);
+                break;
+            }
+            case "grade7": {
 
-            arrayForListView = homeworkToPresent.getAllGradeschoolHomeworkAsArray();
+                HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+
+                arrayForListView = homeworkToPresent.getSeventhGradeHomeworkAsArray();
+
+                break;
+            }
+            case "grade6": {
+
+                HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
+
+                arrayForListView = homeworkToPresent.getSixthGradeHomeworkAsArray();
+
+                break;
+            }
+            default: {
+
+
+                HomeworkClassAllGrades homeworkToPresent = gradeSchoolHomeworkList.get(position);
+
+                arrayForListView = homeworkToPresent.getAllGradeschoolHomeworkAsArray();
+                break;
+            }
         }
 
         adImpressionRetriever.execute();
 
-        HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(),arrayForListView);
+        HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(), arrayForListView);
 
 /*
         listViewAdapter = new ArrayAdapter<String>(

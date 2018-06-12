@@ -1,9 +1,7 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
 import com.locallinkonline.stcatherineschool.rest.api.HomeworkApi;
-import com.locallinkonline.stcatherineschool.rest.model.EighthGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.rest.model.GradeschoolHomeworkSchedule;
-import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
 
 import java.io.IOException;
 import java.util.Date;

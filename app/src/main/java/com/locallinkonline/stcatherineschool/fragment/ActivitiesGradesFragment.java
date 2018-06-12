@@ -21,10 +21,10 @@ import androidx.fragment.app.FragmentTransaction;
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesGradesFragment extends Fragment {
+class ActivitiesGradesFragment extends Fragment {
 
 
-    String[] allGrades = { "Grade 8",
+    private final String[] allGrades = { "Grade 8",
             "Grade 7",
             "Grade 6",
             "Grade 5",
@@ -33,9 +33,6 @@ public class ActivitiesGradesFragment extends Fragment {
             "Grade 2",
             "Grade 1",
             "Kindergarten"};
-
-    ListView listView;
-    ArrayAdapter<String> listViewAdapter;
 
     String activity;
 
@@ -59,10 +56,9 @@ public class ActivitiesGradesFragment extends Fragment {
          */
 
 
+        ListView listView = view.findViewById(R.id.activitesGradesListView);
 
-        listView = view.findViewById(R.id.activitesGradesListView);
-
-        listViewAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 allGrades

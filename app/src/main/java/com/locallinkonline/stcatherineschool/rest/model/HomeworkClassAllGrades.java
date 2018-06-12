@@ -50,7 +50,8 @@ public class HomeworkClassAllGrades {
     private String undefinedColumnHeader;
 
     public String[] getAllGradeschoolHomeworkAsArray() {
-        String[] resultArray = {
+
+        return new String[]{
                 "Reminder",
                 getReminder(),
                 "Math",
@@ -74,14 +75,13 @@ public class HomeworkClassAllGrades {
                 "Next Special Event",
                 getNextEvent()
         };
-
-        return resultArray;
     }
 
 
 
     public String[] getEigthGradeHomeworkAsArray() {
-        String[] resultArray = {
+
+        return new String[]{
                 "Reminder",
                 getReminder(),
                 "Algebra",
@@ -105,13 +105,11 @@ public class HomeworkClassAllGrades {
                 "Next Special Event",
                 getNextEvent()
         };
-
-        return resultArray;
     }
 
 
     public String[] getSeventhGradeHomeworkAsArray() {
-        String[] resultArray = {
+        return new String[]{
                 "Reminder",
                 getReminder(),
                 "Algebra",
@@ -135,11 +133,10 @@ public class HomeworkClassAllGrades {
                 "Next Special Event",
                 getNextEvent()
         };
-        return resultArray;
     }
 
     public String[] getSixthGradeHomeworkAsArray() {
-        String[] resultArray = {
+        return new String[]{
                 "Reminder",
                 getReminder(),
                 "Pre-Algebra",
@@ -159,6 +156,5 @@ public class HomeworkClassAllGrades {
                 "Religion",
                 getReligion()
         };
-        return resultArray;
     }
 }

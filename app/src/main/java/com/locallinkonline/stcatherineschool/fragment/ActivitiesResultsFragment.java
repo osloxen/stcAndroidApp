@@ -27,21 +27,19 @@ import androidx.fragment.app.Fragment;
  * Created by dberge on 3/14/18.
  */
 
-public class ActivitiesResultsFragment extends Fragment {
-    String[] results = {"Loading..."};
-    SportEvent sportEvent = new SportEvent();
-    SportEvent[] events = {sportEvent.getLoadingSportEvent()};
+class ActivitiesResultsFragment extends Fragment {
+    private final String[] results = {"Loading..."};
+    private final SportEvent sportEvent = new SportEvent();
+    private SportEvent[] events = {sportEvent.getLoadingSportEvent()};
 
-    ListView listView;
-    ActivityResultAdapter eventListAdapter;
+    private ListView listView;
+    private ActivityResultAdapter eventListAdapter;
 
     String activity;
     String grade;
     String gender;
 
-    View view;
-
-    GetAdImpressionTask adImpressionRetriever;
+    private final GetAdImpressionTask adImpressionRetriever;
 
     public ActivitiesResultsFragment() {
         this.adImpressionRetriever = new GetAdImpressionTask(this);
@@ -51,7 +49,7 @@ public class ActivitiesResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_activities_results, container, false);
+        View view = inflater.inflate(R.layout.fragment_activities_results, container, false);
 
         listView = view.findViewById(R.id.activitiesResultsListView);
 

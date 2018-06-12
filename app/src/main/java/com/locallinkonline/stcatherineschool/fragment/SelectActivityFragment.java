@@ -40,22 +40,18 @@ import androidx.fragment.app.FragmentTransaction;
 public class SelectActivityFragment extends Fragment {
 
     private final GetAdImpressionTask getAdTask;
-    String[] allActivities = {"Volleyball", "Drama"};
+    private String[] allActivities = {"Volleyball", "Drama"};
 
     //List<Lunch> allLunches = new List<Lunch>();
     ArrayList<String> scheduleList = new ArrayList<>();
 
-    ListView listView;
-    ArrayAdapter<String> listViewAdapter;
+    private ListView listView;
+    private ArrayAdapter<String> listViewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,8 +81,8 @@ public class SelectActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -101,7 +97,7 @@ public class SelectActivityFragment extends Fragment {
 
         listView = view.findViewById(R.id.activitiesList);
 
-        listViewAdapter = new ArrayAdapter<String>(
+        listViewAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 allActivities
@@ -237,7 +233,7 @@ public class SelectActivityFragment extends Fragment {
             Log.d("postExecute", Arrays.toString(SelectActivityFragment.this.allActivities));
 
 
-            listViewAdapter = new ArrayAdapter<String>(
+            listViewAdapter = new ArrayAdapter<>(
                     getActivity(),
                     android.R.layout.simple_list_item_1,
                     SelectActivityFragment.this.allActivities

@@ -25,6 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -43,7 +44,7 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class GradesHomeworkFragment extends Fragment {
 
-    String[] mItems = { "Grade 8",
+    private String[] mItems = { "Grade 8",
                         "Grade 7",
                         "Grade 6",
                         "Grade 5",
@@ -51,13 +52,13 @@ public class GradesHomeworkFragment extends Fragment {
                         "Grade 3"
                         };
 
-    ListView listView;
+    private ListView listView;
 
-    ArrayAdapter<String> listViewAdapter;
+    private ArrayAdapter<String> listViewAdapter;
 
-    public String[] getColumnValues() {
+    private void getColumnValues() {
 
-        final List<String> columnNames = new ArrayList<String>();
+        final List<String> columnNames = new ArrayList<>();
 
         AsyncTask.execute(new Runnable() {
             @Override
@@ -77,7 +78,7 @@ public class GradesHomeworkFragment extends Fragment {
                 // Create connection
                 HttpsURLConnection myConnection;
                 try {
-                    myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
+                    myConnection = (HttpsURLConnection) Objects.requireNonNull(githubEndpoint).openConnection();
 
                     if (HttpsURLConnection.HTTP_OK == myConnection.getResponseCode()) {
                         // Success
@@ -107,9 +108,8 @@ public class GradesHomeworkFragment extends Fragment {
 
                         mItems = columnNames.toArray(new String[(columnNames.size())]);
 
-                    } else {
-                        // Error handling code goes here
-                    }
+                    }  // Error handling code goes here
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -117,7 +117,7 @@ public class GradesHomeworkFragment extends Fragment {
             }
         });
 
-        return columnNames.toArray(new String[columnNames.size()]);
+        columnNames.toArray(new String[columnNames.size()]);
     }
 
     private OnFragmentInteractionListener mListener;
@@ -149,7 +149,7 @@ public class GradesHomeworkFragment extends Fragment {
 
         listView = view.findViewById( R.id.homeworkGradesListView );
 
-        listViewAdapter = new ArrayAdapter<String>(
+        listViewAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 mItems
@@ -236,7 +236,7 @@ public class GradesHomeworkFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            final List<String> columnNames = new ArrayList<String>();
+            final List<String> columnNames = new ArrayList<>();
 
             AsyncTask.execute(new Runnable() {
                 @Override
@@ -253,7 +253,7 @@ public class GradesHomeworkFragment extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            listViewAdapter = new ArrayAdapter<String>(
+            listViewAdapter = new ArrayAdapter<>(
                     getActivity(),
                     android.R.layout.simple_list_item_1,
                     mItems

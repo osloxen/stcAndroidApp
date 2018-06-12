@@ -35,7 +35,7 @@ public class GetAdImpressionTask extends AsyncTask<String,Void,AdUnit> {
 
     @Override
     protected AdUnit doInBackground(String... params) {
-        return getAdImpression("android","1001","undefined");
+        return getAdImpression();
     }
 
     @Override
@@ -46,11 +46,11 @@ public class GetAdImpressionTask extends AsyncTask<String,Void,AdUnit> {
         adDisplay.setText(adDisplayString);
     }
 
-    private AdUnit getAdImpression(String platform, String schoolId, String impressionLocation) {
+    private AdUnit getAdImpression() {
 
         AdEngineApi adEngineApi = retrofit.create(AdEngineApi.class);
 
-        Call<AdUnit> call = adEngineApi.getAd(platform,  schoolId,  impressionLocation);
+        Call<AdUnit> call = adEngineApi.getAd("android", "1001", "undefined");
 
         call.enqueue(new Callback<AdUnit>() {
             @Override
