@@ -96,7 +96,6 @@ public class HomeworkForGradeFragment extends Fragment {
                 }
                 System.out.println("examined key => " + key);
             }
-
         }
     }
 

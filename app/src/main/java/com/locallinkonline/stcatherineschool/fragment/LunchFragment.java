@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.R;
+import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
+import com.locallinkonline.stcatherineschool.rest.model.Lunch;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetLunchDataTask;
+import com.locallinkonline.stcatherineschool.view.LunchViewModel;
 
 import java.util.Date;
 
@@ -26,9 +30,6 @@ import androidx.fragment.app.Fragment;
  */
 public class LunchFragment extends Fragment {
 
-    private final GetAdImpressionTask adImpressionRetriever;
-    private final GetLunchDataTask lunchDataRetriever;
-
     private ListView listView;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -39,8 +40,6 @@ public class LunchFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public LunchFragment() {
-        this.adImpressionRetriever = new GetAdImpressionTask(this);
-        this.lunchDataRetriever = new GetLunchDataTask(this);
     }
 
     /**
@@ -78,13 +77,19 @@ public class LunchFragment extends Fragment {
 
         listView = view.findViewById(R.id.lunchDetailsListView);
 
-        adImpressionRetriever.execute();
+        LunchViewModel viewModel = new LunchViewModel(this.getActivity().getApplication());
 
-        Date startDate = new Date();
-        long ltime=startDate.getTime()+8*24*60*60*1000;
-        Date endDate=new Date(ltime);
+        viewModel.getData().observe(this, data -> {
+            this.getMainListView().setAdapter(
+                    new LunchDisplayAdapter(this.getContext(),
+                            data.getLunchScheduleList().toArray(
+                                    new Lunch[data.getLunchScheduleList().size()])));
+        });
 
-        lunchDataRetriever.execute(startDate, endDate);
+        viewModel.getAdData().observe(this, data -> {
+            TextView adDisplay = view.findViewById(R.id.localLinkAdBusiness);
+            adDisplay.setText(data.getDisplayString());
+        });
 
         return view;
     }

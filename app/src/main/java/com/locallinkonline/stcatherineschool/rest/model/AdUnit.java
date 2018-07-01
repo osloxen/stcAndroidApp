@@ -16,4 +16,8 @@ public class AdUnit {
     private String adTitle;
     @SerializedName("adText")
     private String adText;
+
+    public String getDisplayString() {
+        return this.getBusiness() + "\n" + this.getAdText();
+    }
 }
