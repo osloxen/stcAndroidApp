@@ -12,13 +12,12 @@ import android.widget.TextView;
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetLunchDataTask;
 import com.locallinkonline.stcatherineschool.view.LunchViewModel;
 
-import java.util.Date;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +76,10 @@ public class LunchFragment extends Fragment {
 
         listView = view.findViewById(R.id.lunchDetailsListView);
 
+        Toolbar toolbar = container.findViewById(R.id.toolbar);
+
+        toolbar.setTitle(R.string.lunch_title);
+
         LunchViewModel viewModel = new LunchViewModel(this.getActivity().getApplication());
 
         viewModel.getData().observe(this, data -> {
@@ -87,8 +90,7 @@ public class LunchFragment extends Fragment {
         });
 
         viewModel.getAdData().observe(this, data -> {
-            TextView adDisplay = view.findViewById(R.id.localLinkAdBusiness);
-            adDisplay.setText(data.getDisplayString());
+            changeAdView(view, data);
         });
 
         return view;

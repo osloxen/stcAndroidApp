@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.locallinkonline.stcatherineschool.activities.MainActivity">
 
-    <androidx.constraintlayout.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootActivityView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-    </androidx.constraintlayout.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

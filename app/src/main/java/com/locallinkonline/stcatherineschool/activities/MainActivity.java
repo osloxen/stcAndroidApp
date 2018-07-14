@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements
                 pushFragment(new SelectActivityFragment());
                 break;
             case R.id.navigation_lunch:
-                mActionBar.setTitle(R.string.title_notifications);
+                mActionBar.setTitle(R.string.lunch_title);
                 pushFragment(new LunchFragment());
                 break;
             default:

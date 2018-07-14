@@ -11,7 +11,7 @@ import androidx.lifecycle.LiveData;
 public class ViewModelWithAds extends AndroidViewModel {
     private final AdLiveData data;
 
-    public ViewModelWithAds(Application application) {
+    ViewModelWithAds(Application application) {
         super(application);
         data = new AdLiveData();
     }
