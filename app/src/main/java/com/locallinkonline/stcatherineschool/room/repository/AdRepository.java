@@ -51,7 +51,9 @@ public class AdRepository {
             public void onResponse(Call<AdUnit> call, Response<AdUnit> response) {
                 AdUnit ad = response.body();
 
-                insert(new AdEntity(ad.getBusinessId(), ad.getBusiness(), ad.getAdTitle(), ad.getAdText()));
+                if(ad != null) {
+                    insert(new AdEntity(ad.getBusinessId(), ad.getBusiness(), ad.getAdTitle(), ad.getAdText()));
+                }
             }
 
             @Override

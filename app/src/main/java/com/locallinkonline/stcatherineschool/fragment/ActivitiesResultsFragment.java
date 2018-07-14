@@ -15,6 +15,7 @@ import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleCon
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -22,6 +23,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 
 /**
  * Created by dberge on 3/14/18.
@@ -39,11 +43,7 @@ class ActivitiesResultsFragment extends Fragment {
     String grade;
     String gender;
 
-    private final GetAdImpressionTask adImpressionRetriever;
-
-    public ActivitiesResultsFragment() {
-        this.adImpressionRetriever = new GetAdImpressionTask(this);
-    }
+    public ActivitiesResultsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +57,11 @@ class ActivitiesResultsFragment extends Fragment {
 
         listView.setAdapter(eventListAdapter);
 
-        adImpressionRetriever.execute();
+        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+
+        adViewModel.getCurrentAd().observe(this, data -> {
+            changeAdView(view, data);
+        });
 
         new GetActivityDataFromCloud().execute();
 

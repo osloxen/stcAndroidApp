@@ -19,6 +19,7 @@ import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleCon
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,9 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
+
+import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +43,6 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class SelectActivityFragment extends Fragment {
 
-    private final GetAdImpressionTask getAdTask;
     private String[] allActivities = {"Volleyball", "Drama"};
 
     //List<Lunch> allLunches = new List<Lunch>();
@@ -55,9 +58,7 @@ public class SelectActivityFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SelectActivityFragment() {
-        this.getAdTask = new GetAdImpressionTask(this);
-    }
+    public SelectActivityFragment() { }
 
     /**
      * Use this factory method to create a new instance of
@@ -93,8 +94,6 @@ public class SelectActivityFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
 
-        getAdTask.execute();
-
         listView = view.findViewById(R.id.activitiesList);
 
         listViewAdapter = new ArrayAdapter<>(
@@ -104,6 +103,12 @@ public class SelectActivityFragment extends Fragment {
         );
 
         listView.setAdapter(listViewAdapter);
+
+        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+
+        adViewModel.getCurrentAd().observe(this, data -> {
+            changeAdView(view, data);
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -135,8 +140,6 @@ public class SelectActivityFragment extends Fragment {
                     fragmentTransaction.replace(R.id.rootActivityView, schoolActivityFragment).commit();
 
                 }
-
-
             }
         });
 

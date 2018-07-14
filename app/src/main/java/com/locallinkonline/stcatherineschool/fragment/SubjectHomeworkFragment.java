@@ -15,12 +15,16 @@ import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapt
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
+import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +35,6 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class SubjectHomeworkFragment extends Fragment {
-
-    private final GetAdImpressionTask adImpressionRetriever;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,9 +52,7 @@ public class SubjectHomeworkFragment extends Fragment {
 
     String grade;
 
-    public SubjectHomeworkFragment() {
-        this.adImpressionRetriever = new GetAdImpressionTask(this);
-    }
+    public SubjectHomeworkFragment() { }
 
     /**
      * Use this factory method to create a new instance of
@@ -124,7 +124,11 @@ public class SubjectHomeworkFragment extends Fragment {
             }
         }
 
-        adImpressionRetriever.execute();
+        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+
+        adViewModel.getCurrentAd().observe(this, data -> {
+            changeAdView(view, data);
+        });
 
         HomeworkSubjectDisplayAdapter homeworkListAdapter = new HomeworkSubjectDisplayAdapter(this.getContext(), arrayForListView);
 
