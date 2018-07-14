@@ -18,7 +18,6 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 import java.util.ArrayList;

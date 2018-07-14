@@ -14,7 +14,6 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetAdImpressionTask;
 import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 
