@@ -5,10 +5,13 @@ import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
+import com.locallinkonline.stcatherineschool.room.entity.AdEntity;
+
+import java.util.List;
 
 public class AdUtils {
 
-    public static void changeAdView(View view, AdUnit data) {
+    public static void changeAdView(View view, AdEntity data) {
         TextView adBusiness = view.findViewById(R.id.localLinkAdBusiness);
         TextView adText = view.findViewById(R.id.localLinkAdText);
         if(data != null) {

@@ -5,9 +5,10 @@ import android.app.Application;
 import com.locallinkonline.stcatherineschool.rest.liveData.LunchLiveData;
 import com.locallinkonline.stcatherineschool.rest.model.LunchResponseObject;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class LunchViewModel extends ViewModelWithAds {
+public class LunchViewModel extends AndroidViewModel {
     private final LunchLiveData data;
 
     public LunchViewModel(Application application) {
