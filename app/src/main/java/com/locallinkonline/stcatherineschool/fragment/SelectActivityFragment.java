@@ -2,33 +2,28 @@ package com.locallinkonline.stcatherineschool.fragment;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
-import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
-import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
+import com.locallinkonline.stcatherineschool.adapter.TextListViewAdapter;
+import com.locallinkonline.stcatherineschool.listener.StandardTouchListener;
 import com.locallinkonline.stcatherineschool.view.AdViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 
@@ -43,12 +38,6 @@ import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
 public class SelectActivityFragment extends Fragment {
 
     private String[] allActivities = {"Volleyball", "Drama"};
-
-    //List<Lunch> allLunches = new List<Lunch>();
-    ArrayList<String> scheduleList = new ArrayList<>();
-
-    private ListView listView;
-    private ArrayAdapter<String> listViewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,34 +80,27 @@ public class SelectActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_activities, container, false);
+        View view = inflater.inflate(R.layout.standard_list_layout, container, false);
 
-        listView = view.findViewById(R.id.activitiesList);
+        RecyclerView recyclerView = view.findViewById(R.id.standard_recycle_view);
 
-        listViewAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                allActivities
-        );
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getContext());
 
-        listView.setAdapter(listViewAdapter);
+        recyclerView.setLayoutManager(mLayoutManager);
 
-        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+        recyclerView.setAdapter(new TextListViewAdapter(allActivities));
 
-        adViewModel.getCurrentAd().observe(this, data -> {
-            changeAdView(view, data);
-        });
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // When clicked, show a toast with the TextView text
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+
+        recyclerView.addOnItemTouchListener(new StandardTouchListener(getContext(), recyclerView, new StandardTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
                 Toast.makeText(getActivity(),
                         ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 
-                Log.d("position", Integer.toString(position));
-                Log.d("id", Long.toString(id));
-                Log.d("string value: ", allActivities[position]);
+                view.setActivated(true);
 
                 if (allActivities[position].equals("Volleyball")) {
 
@@ -133,14 +115,20 @@ public class SelectActivityFragment extends Fragment {
                     SchoolActivityFragment schoolActivityFragment = new SchoolActivityFragment();
 
                     schoolActivityFragment.activity = "drama";
-
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.rootActivityView, schoolActivityFragment).commit();
-
                 }
             }
-        });
+
+            @Override
+            public void onLongClick(View view, int position) {
+            }
+        }));
+
+        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+
+        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
 
         // Inflate the layout for this fragment
         return view;
@@ -183,68 +171,5 @@ public class SelectActivityFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-
-
-
-
-    private class GetLunchData extends AsyncTask<Void,Void,Void> {
-
-
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-
-            System.out.println("THIS IS ASYNC WORKING!!!");
-
-            // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date startDate = new Date();
-            long ltime=startDate.getTime()+8*24*60*60*1000;
-            Date endDate=new Date(ltime);
-
-
-            ActivityScheduleController scheduleController = new ActivityScheduleController();
-            //            List<Lunch> lunchList = lunchController.getLunches(startDate,endDate);
-            SportsSchedule scheduleFromCloud = scheduleController.getSchedule("8",
-                                                                    startDate,
-                                                                    endDate,
-                                                                    "volleyball",
-                                                                    "girls",
-                                                                    "all");
-            List<SportEvent> scheduleList = scheduleFromCloud.getSportScheduleArray();
-            List<String> updateScheduleWithThisArray = new ArrayList<>();
-
-            for(SportEvent event : scheduleList) {
-
-                Log.d("Lunch Description: ", event.getNotes());
-                updateScheduleWithThisArray.add(event.getNotes());
-            }
-
-            SelectActivityFragment.this.allActivities = updateScheduleWithThisArray.toArray(new String[updateScheduleWithThisArray.size()]);
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            Log.d("postExecute", Arrays.toString(SelectActivityFragment.this.allActivities));
-
-
-            listViewAdapter = new ArrayAdapter<>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    SelectActivityFragment.this.allActivities
-            );
-
-
-
-            SelectActivityFragment.this.listView.setAdapter(listViewAdapter);
-
-        }
     }
 }

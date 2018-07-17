@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    android:orientation="vertical"
-    tools:context="com.locallinkonline.stcatherineschool.fragment.SelectActivityFragment">
+    android:orientation="vertical">
 
     <include layout="@layout/ad_unit" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/standard_recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground" />
 
 </LinearLayout>
