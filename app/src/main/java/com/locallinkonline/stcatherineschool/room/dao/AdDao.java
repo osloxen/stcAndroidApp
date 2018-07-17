@@ -13,10 +13,13 @@ import androidx.room.Query;
 @Dao
 public interface AdDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(AdEntity adEntity);
+    void insert(AdEntity... adEntity);
 
     @Query("DELETE FROM ad_table")
     void deleteAll();
+
+    @Query("DELETE FROM ad_table WHERE business_id NOT IN(:adIds)")
+    void deleteAds(String[] adIds);
 
     @Query("SELECT * FROM ad_table")
     List<AdEntity> getAllAds();

@@ -10,22 +10,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.adapter.TextListViewAdapter;
 import com.locallinkonline.stcatherineschool.listener.StandardTouchListener;
 import com.locallinkonline.stcatherineschool.view.AdViewModel;
-
-import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
+import static com.locallinkonline.stcatherineschool.util.ViewUtils.configureStandardRecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,22 +74,11 @@ public class SelectActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.standard_list_layout, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.standard_recycle_view);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getContext());
-
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setAdapter(new TextListViewAdapter(allActivities));
-
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-
-        recyclerView.addOnItemTouchListener(new StandardTouchListener(getContext(), recyclerView, new StandardTouchListener.ClickListener() {
+        RecyclerView.OnItemTouchListener touchListener = new StandardTouchListener(getContext(), recyclerView, new StandardTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Toast.makeText(getActivity(),
@@ -124,9 +108,11 @@ public class SelectActivityFragment extends Fragment {
             @Override
             public void onLongClick(View view, int position) {
             }
-        }));
+        });
 
-        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+        configureStandardRecyclerView(getContext(), recyclerView, allActivities, touchListener);
+
+        AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
         adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
 

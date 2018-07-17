@@ -8,6 +8,7 @@ import com.locallinkonline.stcatherineschool.room.repository.AdRepository;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -17,7 +18,7 @@ public class AdViewModel extends AndroidViewModel {
 
     private final AdRepository adRepository;
 
-    private final Random random = new Random();
+    private final AtomicInteger counter = new AtomicInteger();
 
     @Getter
     private LiveData<AdEntity> currentAd;
@@ -30,7 +31,6 @@ public class AdViewModel extends AndroidViewModel {
             protected void onActive() {
                 super.onActive();
                 new AsyncTask<Void, Void, List<AdEntity>>() {
-
                     @Override
                     protected List<AdEntity> doInBackground(Void... voids) {
                         return adRepository.getAds();
@@ -39,7 +39,7 @@ public class AdViewModel extends AndroidViewModel {
                     @Override
                     protected void onPostExecute (List<AdEntity> ads) {
                         if(ads != null && ads.size() > 0) {
-                            setValue(ads.get(random.nextInt(ads.size())));
+                            setValue(ads.get(counter.getAndIncrement() % ads.size()));
                         }
                     }
                 }.execute();

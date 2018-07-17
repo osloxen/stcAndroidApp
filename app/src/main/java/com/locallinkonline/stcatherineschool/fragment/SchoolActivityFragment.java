@@ -40,7 +40,6 @@ public class SchoolActivityFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
-
     }
 
     public TextView getNotesDataView() {

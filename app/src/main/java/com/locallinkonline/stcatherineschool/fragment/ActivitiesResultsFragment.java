@@ -56,7 +56,7 @@ class ActivitiesResultsFragment extends Fragment {
 
         listView.setAdapter(eventListAdapter);
 
-        AdViewModel adViewModel = ViewModelProviders.of(this).get(AdViewModel.class);
+        AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
         adViewModel.getCurrentAd().observe(this, data -> {
             changeAdView(view, data);

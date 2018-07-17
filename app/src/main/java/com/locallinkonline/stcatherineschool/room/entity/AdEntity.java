@@ -1,5 +1,7 @@
 package com.locallinkonline.stcatherineschool.room.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -16,19 +18,23 @@ import lombok.Setter;
 @Setter
 public class AdEntity {
 
+    @SerializedName("businessId")
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "business_id")
     private String businessId;
 
+    @SerializedName("business")
     @NonNull
     @ColumnInfo(name = "business")
     private String business;
 
+    @SerializedName("adTitle")
     @NonNull
     @ColumnInfo(name = "ad_title")
     private String adTitle;
 
+    @SerializedName("adText")
     @NonNull
     @ColumnInfo(name = "ad_text")
     private String adText;

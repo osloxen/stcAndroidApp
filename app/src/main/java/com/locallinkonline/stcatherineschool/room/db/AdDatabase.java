@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 
 import com.google.gson.GsonBuilder;
 import com.locallinkonline.stcatherineschool.rest.api.AdEngineApi;
-import com.locallinkonline.stcatherineschool.rest.model.AdUnit;
 import com.locallinkonline.stcatherineschool.room.dao.AdDao;
 import com.locallinkonline.stcatherineschool.room.entity.AdEntity;
 
 import java.io.IOException;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class AdDatabase extends RoomDatabase {
 
     private static final AdEngineApi adEngineApi = new Retrofit.Builder()
-            .baseUrl("https://lndj19ck3k.execute-api.us-east-1.amazonaws.com/march2018green/")
+            .baseUrl("https://6qft2bh965.execute-api.us-west-2.amazonaws.com/dev/")
             .addConverterFactory(GsonConverterFactory.create(
                     new GsonBuilder().setLenient().create()))
             .build().create(AdEngineApi.class);
@@ -65,16 +65,19 @@ public abstract class AdDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Call<AdUnit> getAdsCall = adEngineApi.getAd(
+            Call<List<AdEntity>> getAdsCall = adEngineApi.getAllAds(
                     "android",
                     "1001",
                     "undefined");
 
             try {
-                Response<AdUnit> response = getAdsCall.execute();
-                AdUnit ad = response.body();
-                if(ad != null) {
-                    dao.insert(new AdEntity(ad.getBusinessId(), ad.getBusiness(), ad.getAdTitle(), ad.getAdText()));
+                Response<List<AdEntity>> response = getAdsCall.execute();
+                List<AdEntity> ads = response.body();
+
+                if(ads != null) {
+                    AdEntity[] adArray = new AdEntity[ads.size()];
+                    ads.toArray(adArray);
+                    dao.insert(adArray);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
