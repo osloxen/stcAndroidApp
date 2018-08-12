@@ -18,7 +18,7 @@ public interface AdEngineApi {
                        @Query("impressionLocation") String impressionLocation);
 
     @GET("get-all-ads")
-    Call<List<AdEntity>> getAllAds(@Query("platform") String platform,
-                                   @Query("schoolId") String schoolId,
-                                   @Query("impressionLocation") String impressionLocation);
+    Call<AdEntity[]> getAllAds(@Query("platform") String platform,
+                               @Query("schoolId") String schoolId,
+                               @Query("impressionLocation") String impressionLocation);
 }

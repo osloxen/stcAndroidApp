@@ -36,35 +36,34 @@ public class AdRepository {
         return mAdDao.getAllAds();
     }
 
-    public void checkForNewAd() {
-        Call<List<AdEntity>> getAdsCall = adEngineApi.getAllAds(
+    public void checkForNewAds() {
+        Call<AdEntity[]> getAdsCall = adEngineApi.getAllAds(
                 "android",
                 "1001",
                 "undefined");
 
-        getAdsCall.enqueue(new Callback<List<AdEntity>>() {
+        getAdsCall.enqueue(new Callback<AdEntity[]>() {
             @Override
-            public void onResponse(Call<List<AdEntity>> call, Response<List<AdEntity>> response) {
-                List<AdEntity> ads = response.body();
+            public void onResponse(Call<AdEntity[]> call, Response<AdEntity[]> response) {
+                AdEntity[] ads = response.body();
 
-                if(ads != null && ads.size() > 0) {
-                    AdEntity ad = ads.get(0);
-                    insert(ad);
+                if(ads != null && ads.length > 0) {
+                    insert(ads);
                     clearDisabledAds(ads);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<AdEntity>> call, Throwable t) {
+            public void onFailure(Call<AdEntity[]> call, Throwable t) {
                 System.out.print("TEST");
             }
         });
     }
 
-    private void clearDisabledAds(List<AdEntity> ads) { new clearDisabledAdsTask(mAdDao).execute(ads); }
+    private void clearDisabledAds(AdEntity[] ads) { new clearDisabledAdsTask(mAdDao).execute(ads); }
 
-    private void insert(AdEntity ad) {
-        new insertAdTask(mAdDao).execute(ad);
+    private void insert(AdEntity[] ads) {
+        new insertAdTask(mAdDao).execute(ads);
     }
 
     private static class insertAdTask extends AsyncTask<AdEntity, Void, Void> {
@@ -82,7 +81,7 @@ public class AdRepository {
         }
     }
 
-    private class clearDisabledAdsTask extends AsyncTask<List<AdEntity>, Void, Void> {
+    private static class clearDisabledAdsTask extends AsyncTask<AdEntity, Void, Void> {
         private final AdDao adDao;
 
         clearDisabledAdsTask(AdDao adDao) {
@@ -90,14 +89,12 @@ public class AdRepository {
         }
 
         @Override
-        protected Void doInBackground(List<AdEntity>... lists) {
-            List<AdEntity> adEntities = lists[0];
+        protected Void doInBackground(AdEntity... ads) {
 
-            String[] ids = new String[adEntities.size()];
+            String[] ids = new String[ads.length];
 
-            for(int i = 0; i < adEntities.size(); i++) {
-                AdEntity ad = adEntities.get(i);
-                ids[i] = ad.getBusinessId();
+            for(int i = 0; i < ads.length; i++) {
+                ids[i] = ads[i].getBusinessId();
             }
 
             if(ids.length > 0) {

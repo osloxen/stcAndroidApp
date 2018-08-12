@@ -65,19 +65,17 @@ public abstract class AdDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Call<List<AdEntity>> getAdsCall = adEngineApi.getAllAds(
+            Call<AdEntity[]> getAdsCall = adEngineApi.getAllAds(
                     "android",
                     "1001",
                     "undefined");
 
             try {
-                Response<List<AdEntity>> response = getAdsCall.execute();
-                List<AdEntity> ads = response.body();
+                Response<AdEntity[]> response = getAdsCall.execute();
+                AdEntity[] ads = response.body();
 
-                if(ads != null) {
-                    AdEntity[] adArray = new AdEntity[ads.size()];
-                    ads.toArray(adArray);
-                    dao.insert(adArray);
+                if(ads != null && ads.length > 0) {
+                    dao.insert(ads);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

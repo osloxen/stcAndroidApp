@@ -7,7 +7,6 @@ import com.locallinkonline.stcatherineschool.room.entity.AdEntity;
 import com.locallinkonline.stcatherineschool.room.repository.AdRepository;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -43,7 +42,7 @@ public class AdViewModel extends AndroidViewModel {
                         }
                     }
                 }.execute();
-                adRepository.checkForNewAd();
+                adRepository.checkForNewAds();
             }
         };
     }
