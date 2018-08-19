@@ -14,7 +14,7 @@ import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.adapter.HomeworkSubjectDisplayAdapter;
 import com.locallinkonline.stcatherineschool.classrooms.GradeEight;
 import com.locallinkonline.stcatherineschool.rest.model.HomeworkClassAllGrades;
-import com.locallinkonline.stcatherineschool.view.AdViewModel;
+import com.locallinkonline.locallinkschool.view.AdViewModel;
 
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
+import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,7 +93,6 @@ public class SubjectHomeworkFragment extends Fragment {
                 HomeworkClassAllGrades homeworkToPresent = middleSchoolHomeworkList.get(position);
 
                 arrayForListView = homeworkToPresent.getEigthGradeHomeworkAsArray();
-
 
                 break;
             }

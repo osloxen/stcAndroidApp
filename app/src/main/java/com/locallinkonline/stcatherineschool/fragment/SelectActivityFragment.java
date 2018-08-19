@@ -3,24 +3,18 @@ package com.locallinkonline.stcatherineschool.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.locallinkonline.locallinkschool.fragment.StandardTextViewListFragment;
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.listener.StandardTouchListener;
-import com.locallinkonline.stcatherineschool.view.AdViewModel;
+import com.locallinkonline.locallinkschool.listener.StandardTouchListener;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
-import static com.locallinkonline.stcatherineschool.util.ViewUtils.configureStandardRecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +24,7 @@ import static com.locallinkonline.stcatherineschool.util.ViewUtils.configureStan
  * Use the {@link SelectActivityFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SelectActivityFragment extends Fragment {
+public class SelectActivityFragment extends StandardTextViewListFragment {
 
     private String[] allActivities = {"Volleyball", "Drama"};
 
@@ -71,14 +65,13 @@ public class SelectActivityFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected String[] getData() {
+        return allActivities;
+    }
 
-        View view = inflater.inflate(R.layout.standard_list_layout, container, false);
-
-        RecyclerView recyclerView = view.findViewById(R.id.standard_recycle_view);
-
-        RecyclerView.OnItemTouchListener touchListener = new StandardTouchListener(getContext(), recyclerView, new StandardTouchListener.ClickListener() {
+    @Override
+    protected StandardTouchListener.ClickListener getClickListener(RecyclerView recyclerView) {
+        return new StandardTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Toast.makeText(getActivity(),
@@ -108,23 +101,7 @@ public class SelectActivityFragment extends Fragment {
             @Override
             public void onLongClick(View view, int position) {
             }
-        });
-
-        configureStandardRecyclerView(getContext(), recyclerView, allActivities, touchListener);
-
-        AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
-
-        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
-
-        // Inflate the layout for this fragment
-        return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        };
     }
 
     @Override

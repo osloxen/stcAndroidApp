@@ -19,7 +19,7 @@ public interface ScheduleApi {
                                               @Query("startDate") String startDate,
                                               @Query("endDate") String endDate,
                                               @Query("sport") String sport,
-                                                @Query("gender") String gender,
-                                                @Query("eventType") String eventType);
+                                              @Query("gender") String gender,
+                                              @Query("eventType") String eventType);
 
 }

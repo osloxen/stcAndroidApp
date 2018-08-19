@@ -1,27 +1,23 @@
 package com.locallinkonline.stcatherineschool.fragment;
 
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.locallinkonline.locallinkschool.fragment.StandardTextViewListFragment;
+import com.locallinkonline.locallinkschool.listener.StandardTouchListener;
 import com.locallinkonline.stcatherineschool.R;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by dberge on 3/14/18.
  */
 
-class ActivitiesGenderFragment extends Fragment {
+class ActivitiesGenderFragment extends StandardTextViewListFragment {
 
     private final String[] allGenders = { "Girls", "Boys"};
 
@@ -33,31 +29,19 @@ class ActivitiesGenderFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected String[] getData() {
+        return allGenders;
+    }
 
-
-        View view = inflater.inflate(R.layout.fragment_activities_gender, container, false);
-
-        ListView listView = view.findViewById(R.id.activitiesGenderListView);
-
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                allGenders
-        );
-
-        listView.setAdapter(listViewAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // When clicked, show a toast with the TextView text
+    @Override
+    protected StandardTouchListener.ClickListener getClickListener(RecyclerView view) {
+        return new StandardTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
                 Toast.makeText(getActivity(),
                         ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 
                 Log.d("position", Integer.toString(position));
-                Log.d("id", Long.toString(id));
                 Log.d("string value: ", allGenders[position]);
 
 
@@ -69,12 +53,12 @@ class ActivitiesGenderFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.rootActivityView, actResultsFragment).commit();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
 
             }
-        });
-
-        // Inflate the layout for this fragment
-        return view;
-
+        };
     }
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="adsUrl">https://6qft2bh965.execute-api.us-west-2.amazonaws.com/dev/</string>
+</resources>

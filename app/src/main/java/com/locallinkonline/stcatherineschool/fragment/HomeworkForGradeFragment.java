@@ -61,8 +61,6 @@ public class HomeworkForGradeFragment extends Fragment {
     private List<HomeworkClassAllGrades> gradeSchoolHomeworkList;
     private List<HomeworkClassAllGrades> middleSchoolHomeworkList;
 
-    AdUnit adToDisplay;
-
     private String convertDateToHumanReadable(String originalDate) {
 
         DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");

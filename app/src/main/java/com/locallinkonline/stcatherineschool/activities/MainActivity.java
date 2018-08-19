@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity implements
                 pushFragment(new HomeFragment());
                 break;*/
             case R.id.navigation_homework:
-                mActionBar.setTitle(R.string.title_home);
+                mActionBar.setTitle(R.string.homework_title);
                 pushFragment(new GradesHomeworkFragment());
                 break;
             case R.id.navigation_activities:
-                mActionBar.setTitle(R.string.title_dashboard);
+                mActionBar.setTitle(R.string.activities_title);
                 pushFragment(new SelectActivityFragment());
                 break;
             case R.id.navigation_lunch:

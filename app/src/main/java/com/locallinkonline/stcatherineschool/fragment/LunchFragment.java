@@ -7,19 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
 import com.locallinkonline.stcatherineschool.rest.model.Lunch;
-import com.locallinkonline.stcatherineschool.view.AdViewModel;
+import com.locallinkonline.locallinkschool.view.AdViewModel;
 import com.locallinkonline.stcatherineschool.view.LunchViewModel;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
+import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
 
 /**
  * A simple {@link Fragment} subclass.

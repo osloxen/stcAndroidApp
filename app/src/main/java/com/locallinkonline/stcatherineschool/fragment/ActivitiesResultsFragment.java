@@ -14,7 +14,7 @@ import com.locallinkonline.stcatherineschool.adapter.ActivityResultAdapter;
 import com.locallinkonline.stcatherineschool.rest.controller.ActivityScheduleController;
 import com.locallinkonline.stcatherineschool.rest.model.SportEvent;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
-import com.locallinkonline.stcatherineschool.view.AdViewModel;
+import com.locallinkonline.locallinkschool.view.AdViewModel;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import static com.locallinkonline.stcatherineschool.util.AdUtils.changeAdView;
+import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
 
 /**
  * Created by dberge on 3/14/18.
