@@ -15,10 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lunch {
-    @SerializedName("date")
+    @SerializedName("eventDate")
     private Date date;
-    @SerializedName("lunchAvailable")
-    private boolean available;
-    @SerializedName("lunchDescription")
+    @SerializedName("summary")
     private String description;
 }

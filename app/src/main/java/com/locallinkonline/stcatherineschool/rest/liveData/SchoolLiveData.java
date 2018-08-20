@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public interface SchoolLiveData{
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String baseUrl = "https://telbelahfa.execute-api.us-east-1.amazonaws.com/prodgreen/stc/";
+    String baseUrl = "https://103hytduv6.execute-api.us-west-2.amazonaws.com/dev/";
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(

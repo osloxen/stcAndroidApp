@@ -28,9 +28,8 @@ public class LunchLiveData extends LiveData<LunchResponseObject> implements Scho
 
     private void loadData() {
         String startDate = sdf.format(new Date());
-        String endDate = sdf.format(new Date(new Date().getTime() + DateUtils.WEEK_IN_MILLIS));
 
-        Call<LunchResponseObject> call = lunchApi.getLunches(startDate, endDate);
+        Call<LunchResponseObject> call = lunchApi.getLunches(startDate);
 
         call.enqueue(new Callback<LunchResponseObject>() {
             @Override

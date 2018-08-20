@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class LunchResponseObject {
-    @SerializedName("alexaResponse")
-    private String alexaResponse;
-    @SerializedName("lunchScheduleArray")
+    @SerializedName("schedule")
     private ArrayList<Lunch> lunchScheduleList;
 }

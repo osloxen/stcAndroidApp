@@ -11,7 +11,6 @@ import retrofit2.http.Query;
  */
 
 public interface LunchApi {
-
     @GET("lunch")
-    Call<LunchResponseObject> getLunches(@Query("startDate") String startDate, @Query("endDate") String endDate);
+    Call<LunchResponseObject> getLunches(@Query("lunchDate") String date);
 }
