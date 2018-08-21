@@ -1,6 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
-import com.locallinkonline.stcatherineschool.rest.api.HomeworkApi;
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineApi;
 import com.locallinkonline.stcatherineschool.rest.model.EighthGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.rest.model.SeventhGradeHomeworkSchedule;
 import com.locallinkonline.stcatherineschool.rest.model.SixthGradeHomeworkSchedule;
@@ -20,7 +20,7 @@ public class HomeworkController extends BaseController {
 
     public EighthGradeHomeworkSchedule getHomeworkEigthGrade(Date startDate, Date endDate) {
 
-        HomeworkApi homeworkApi = retrofit.create(HomeworkApi.class);
+        StCatherineApi homeworkApi = retrofit.create(StCatherineApi.class);
         Call<EighthGradeHomeworkSchedule> call = homeworkApi.getEighthGradeHomework(sdf.format(startDate), sdf.format(endDate));
 
         Response<EighthGradeHomeworkSchedule> response;
@@ -56,7 +56,7 @@ public class HomeworkController extends BaseController {
 
     public SeventhGradeHomeworkSchedule getHomeworkSeventhGrade(Date startDate, Date endDate) {
 
-        HomeworkApi homeworkApi = retrofit.create(HomeworkApi.class);
+        StCatherineApi homeworkApi = retrofit.create(StCatherineApi.class);
         Call<SeventhGradeHomeworkSchedule> call = homeworkApi.getSeventhGradeHomework(sdf.format(startDate), sdf.format(endDate));
 
         Response<SeventhGradeHomeworkSchedule> response;
@@ -79,7 +79,7 @@ public class HomeworkController extends BaseController {
 
     public SixthGradeHomeworkSchedule getHomeworkSixthGrade(Date startDate, Date endDate) {
 
-        HomeworkApi homeworkApi = retrofit.create(HomeworkApi.class);
+        StCatherineApi homeworkApi = retrofit.create(StCatherineApi.class);
         Call<SixthGradeHomeworkSchedule> call = homeworkApi.getSixthGradeHomework(sdf.format(startDate), sdf.format(endDate));
 
         Response<SixthGradeHomeworkSchedule> response;

@@ -12,6 +12,7 @@ import com.locallinkonline.locallinkschool.room.db.AdDatabase;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +36,7 @@ public class AdRepository {
                 .build().create(AdEngineApi.class);
     }
 
-    public List<AdEntity> getAds() {
+    public LiveData<AdEntity[]> getAds() {
         return mAdDao.getAllAds();
     }
 
@@ -79,7 +80,7 @@ public class AdRepository {
 
         @Override
         protected Void doInBackground(AdEntity... adEntities) {
-            mAdDao.insert(adEntities[0]);
+            mAdDao.insert(adEntities);
             return null;
         }
     }

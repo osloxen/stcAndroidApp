@@ -1,7 +1,7 @@
 package com.locallinkonline.stcatherineschool.rest.tasks;
 
 import com.locallinkonline.stcatherineschool.fragment.SchoolActivityFragment;
-import com.locallinkonline.stcatherineschool.rest.api.ActivityApi;
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineApi;
 import com.locallinkonline.stcatherineschool.rest.model.Activities;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class GetSchoolActivityTask extends SchoolDataTask<String, Void, Activiti
     private Activities getActivityNotifications(String activity) {
 
         // TODO FIX EVERYTHING BELOW THIS!!!
-        ActivityApi activityApi = retrofit.create(ActivityApi.class);
+        StCatherineApi activityApi = retrofit.create(StCatherineApi.class);
         Call<Activities> call = activityApi.getActivityNotifications(activity);
 
         Response<Activities> response;

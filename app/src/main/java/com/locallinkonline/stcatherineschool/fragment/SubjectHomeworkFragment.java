@@ -124,7 +124,7 @@ public class SubjectHomeworkFragment extends Fragment {
 
         AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
-        adViewModel.getCurrentAd().observe(this, data -> {
+        adViewModel.getCurrentAds().observe(this, data -> {
             changeAdView(view, data);
         });
 

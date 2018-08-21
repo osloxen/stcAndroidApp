@@ -1,6 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
-import com.locallinkonline.stcatherineschool.rest.api.HomeworkApi;
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineApi;
 import com.locallinkonline.stcatherineschool.rest.model.GradeschoolHomeworkSchedule;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class GradeschoolHomeworkController extends BaseController {
 
     public GradeschoolHomeworkSchedule getHomework(String grade, Date startDate, Date endDate) {
 
-        HomeworkApi homeworkApi = retrofit.create(HomeworkApi.class);
+        StCatherineApi homeworkApi = retrofit.create(StCatherineApi.class);
         Call<GradeschoolHomeworkSchedule> call = homeworkApi.getGradeschoolHomework(grade, sdf.format(startDate), sdf.format(endDate));
 
         Response<GradeschoolHomeworkSchedule> response;

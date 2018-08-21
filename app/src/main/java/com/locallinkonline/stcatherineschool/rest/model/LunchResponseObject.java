@@ -1,6 +1,7 @@
 package com.locallinkonline.stcatherineschool.rest.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.locallinkonline.stcatherineschool.room.entity.LunchEntity;
 
 import java.util.ArrayList;
 
@@ -15,5 +16,5 @@ import lombok.NoArgsConstructor;
 @Getter
 public class LunchResponseObject {
     @SerializedName("schedule")
-    private ArrayList<Lunch> lunchScheduleList;
+    private LunchEntity[] schedule;
 }

@@ -1,6 +1,6 @@
 package com.locallinkonline.stcatherineschool.rest.controller;
 
-import com.locallinkonline.stcatherineschool.rest.api.ScheduleApi;
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineApi;
 import com.locallinkonline.stcatherineschool.rest.model.SportsSchedule;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class ActivityScheduleController extends BaseController {
                                       String sport, String gender, String eventType) {
 
         // TODO FIX EVERYTHING BELOW THIS!!!
-        ScheduleApi scheduleApi = retrofit.create(ScheduleApi.class);
+        StCatherineApi scheduleApi = retrofit.create(StCatherineApi.class);
         Call<SportsSchedule> call = scheduleApi.getActivitySchedule(grade,
                                                                     sdf.format(startDate),
                                                                     sdf.format(endDate),

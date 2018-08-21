@@ -83,16 +83,11 @@ public class LunchFragment extends Fragment {
 
         LunchViewModel viewModel = ViewModelProviders.of(this).get(LunchViewModel.class);
 
-        viewModel.getData().observe(this, data -> {
-            this.getMainListView().setAdapter(
-                    new LunchDisplayAdapter(this.getContext(),
-                            data.getLunchScheduleList().toArray(
-                                    new Lunch[data.getLunchScheduleList().size()])));
-        });
+        viewModel.getData().observe(this, data -> this.getMainListView().setAdapter(new LunchDisplayAdapter(this.getContext(), data)));
 
         AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
-        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
+        adViewModel.getCurrentAds().observe(this, data -> changeAdView(view, data));
 
         return view;
     }

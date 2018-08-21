@@ -4,6 +4,7 @@ import com.locallinkonline.locallinkschool.room.entity.AdEntity;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -21,5 +22,5 @@ public interface AdDao {
     void deleteAds(String[] adIds);
 
     @Query("SELECT * FROM ad_table")
-    List<AdEntity> getAllAds();
+    LiveData<AdEntity[]> getAllAds();
 }

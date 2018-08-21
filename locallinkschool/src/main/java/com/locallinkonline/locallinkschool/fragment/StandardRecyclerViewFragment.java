@@ -42,7 +42,7 @@ public abstract class StandardRecyclerViewFragment<T> extends Fragment {
 
         AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
-        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
+        adViewModel.getCurrentAds().observe(this, data -> changeAdView(view, data));
 
         // Inflate the layout for this fragment
         return view;
