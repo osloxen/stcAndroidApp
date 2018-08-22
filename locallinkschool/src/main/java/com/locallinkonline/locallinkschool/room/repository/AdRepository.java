@@ -28,7 +28,6 @@ public class AdRepository {
     public AdRepository(Application application) {
         AdDatabase db = AdDatabase.getDatabase(application);
         mAdDao = db.adDao();
-
         this.adEngineApi = new Retrofit.Builder()
                 .baseUrl(application.getString(R.string.adsUrl))
                 .addConverterFactory(GsonConverterFactory.create(
@@ -80,7 +79,7 @@ public class AdRepository {
 
         @Override
         protected Void doInBackground(AdEntity... adEntities) {
-            mAdDao.insert(adEntities);
+            mAdDao.insertAds(adEntities);
             return null;
         }
     }

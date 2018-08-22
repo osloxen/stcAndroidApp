@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.locallinkonline.locallinkschool.R;
 import com.locallinkonline.locallinkschool.room.entity.AdEntity;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AdUtils {
