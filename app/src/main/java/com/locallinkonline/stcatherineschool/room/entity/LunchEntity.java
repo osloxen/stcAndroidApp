@@ -1,10 +1,9 @@
 package com.locallinkonline.stcatherineschool.room.entity;
 
 import com.google.gson.annotations.SerializedName;
-import com.locallinkonline.locallinkschool.room.entity.AdEntity;
+import com.locallinkonline.locallinkschool.model.ScheduleModel;
 
 import java.util.Date;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -22,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class LunchEntity {
+public class LunchEntity implements ScheduleModel {
 
     @PrimaryKey
     @NonNull
@@ -34,4 +33,14 @@ public class LunchEntity {
     @ColumnInfo(name ="summary")
     @SerializedName("summary")
     private String summary;
+
+    @Override
+    public Date getDate() {
+        return eventDate;
+    }
+
+    @Override
+    public String getSummary() {
+        return summary;
+    }
 }

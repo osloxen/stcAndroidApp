@@ -9,25 +9,24 @@ import com.locallinkonline.locallinkschool.room.repository.AdRepository;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class AdViewModel extends AndroidViewModel {
-    private LiveData<AdEntity[]> currentAds;
+public class AdViewModel extends LiveDataViewModel<AdEntity[]> {
     private final AdRepository adRepository;
     private static long lastUpdate;
 
     AdViewModel(Application application) {
         super(application);
         adRepository = new AdRepository(application);
-        currentAds = adRepository.getAds();
+        data = adRepository.getAds();
         lastUpdate = System.currentTimeMillis();
     }
 
-    public LiveData<AdEntity[]> getCurrentAds() {
-
+    @Override
+    public LiveData<AdEntity[]> getData() {
         long millisSinceLastUpdate = System.currentTimeMillis() - lastUpdate;
 
         if(millisSinceLastUpdate > 5 * DateUtils.MINUTE_IN_MILLIS) {
             adRepository.checkForNewAds();
         }
-        return currentAds;
+        return data;
     }
 }

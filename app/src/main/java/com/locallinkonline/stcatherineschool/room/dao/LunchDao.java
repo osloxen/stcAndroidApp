@@ -7,6 +7,7 @@ import com.locallinkonline.stcatherineschool.room.entity.LunchEntity;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -57,7 +58,7 @@ public abstract class LunchDao {
     public abstract void deleteOldLunches(Date before);
 
     @Query("SELECT * FROM lunch_table")
-    public abstract LiveData<LunchEntity[]> getAllLunches();
+    public abstract LiveData<List<LunchEntity>> getAllLunches();
 
     @Query("SELECT * FROM lunch_table WHERE event_date = :date")
     public abstract LunchEntity getLunch(Date date);

@@ -65,7 +65,7 @@ public class SelectActivityFragment extends StandardTextViewListFragment {
     }
 
     @Override
-    protected String[] getData() {
+    protected String[] getStaticData() {
         return allActivities;
     }
 

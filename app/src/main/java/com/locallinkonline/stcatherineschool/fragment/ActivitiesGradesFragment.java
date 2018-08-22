@@ -37,7 +37,7 @@ class ActivitiesGradesFragment extends StandardTextViewListFragment {
     }
 
     @Override
-    protected String[] getData() {
+    protected String[] getStaticData() {
         return allGrades;
     }
 

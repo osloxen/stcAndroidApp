@@ -10,6 +10,8 @@ import com.locallinkonline.stcatherineschool.room.dao.LunchDao;
 import com.locallinkonline.stcatherineschool.room.db.StCatherineDatabase;
 import com.locallinkonline.stcatherineschool.room.entity.LunchEntity;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,7 +27,7 @@ public class StCatherineRepository {
         this.url = application.getString(R.string.stcBaseUrl);
     }
 
-    public LiveData<LunchEntity[]> getLunches() {
+    public LiveData<List<LunchEntity>> getLunches() {
         return lunchDao.getAllLunches();
     }
 

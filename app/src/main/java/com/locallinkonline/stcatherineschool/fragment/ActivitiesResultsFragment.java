@@ -58,7 +58,7 @@ class ActivitiesResultsFragment extends Fragment {
 
         AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
-        adViewModel.getCurrentAds().observe(this, data -> {
+        adViewModel.getData().observe(this, data -> {
             changeAdView(view, data);
         });
 
