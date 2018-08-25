@@ -28,7 +28,7 @@ public class LunchViewModel extends LiveDataViewModel<List<LunchEntity>> {
 
         long millisSinceLastUpdate = System.currentTimeMillis() - lastUpdate;
 
-        if(millisSinceLastUpdate == 5 * DateUtils.MINUTE_IN_MILLIS) {
+        if(millisSinceLastUpdate > 5 * DateUtils.MINUTE_IN_MILLIS) {
             stCatherineRepository.checkForNewLunches();
             lastUpdate = System.currentTimeMillis();
         }
