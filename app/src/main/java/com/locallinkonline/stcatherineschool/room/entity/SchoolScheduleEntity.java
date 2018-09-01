@@ -15,42 +15,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(tableName = "lunch_table")
+@Entity(tableName = "schedule_table")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-public class LunchEntity implements ScheduleModel {
-
+public class SchoolScheduleEntity implements ScheduleModel {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "event_date")
-    @SerializedName("date")
-    private Date eventDate;
+    @SerializedName("eventDate")
+    Date date;
+
+    @NonNull
+    @ColumnInfo(name ="start_time")
+    @SerializedName("startTime")
+    String startTime;
+
+    @NonNull
+    @ColumnInfo(name ="end_time")
+    @SerializedName("endTime")
+    String endTime;
 
     @NonNull
     @ColumnInfo(name ="summary")
-    @SerializedName("lunchDescription")
-    private String summary;
-
-    @Override
-    public Date getDate() {
-        return eventDate;
-    }
-
-    @Override
-    public String getSummary() {
-        return summary;
-    }
-
-    @Override
-    public String getStartTime() {
-        return null;
-    }
-
-    @Override
-    public String getEndTime() {
-        return null;
-    }
+    @SerializedName("summary")
+    String summary;
+    String description;
 }

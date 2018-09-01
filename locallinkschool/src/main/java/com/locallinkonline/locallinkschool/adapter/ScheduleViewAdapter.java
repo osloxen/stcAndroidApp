@@ -1,10 +1,13 @@
 package com.locallinkonline.locallinkschool.adapter;
 
+import android.content.res.Resources;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.locallinkonline.locallinkschool.R;
 import com.locallinkonline.locallinkschool.model.ScheduleModel;
 
@@ -18,7 +21,7 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
 
     private List<T> scheduleModels;
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("MMM dd");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd");
 
     public ScheduleViewAdapter(List<T> scheduleModels) {
         this.scheduleModels = scheduleModels;
@@ -26,15 +29,23 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LinearLayout constraintLayout = (LinearLayout) LayoutInflater.from(parent.getContext())
+        MaterialCardView layout = (MaterialCardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.standard_schedule_item_layout, parent, false);
-        return new ViewHolder(constraintLayout);
+        return new ViewHolder(layout);
     }
 
     @Override
     public void onBindViewHolder(ScheduleViewAdapter.ViewHolder holder, int position) {
-        holder.date.setText(sdf.format(scheduleModels.get(position).getDate()));
-        holder.menuItem.setText(scheduleModels.get(position).getSummary());
+        ScheduleModel model = scheduleModels.get(position);
+
+        String time = sdf.format(model.getDate());
+
+        if(model.getStartTime() != null && model.getEndTime() != null && !model.getStartTime().equals(model.getEndTime())) {
+            holder.duration.setText(model.getStartTime() + " - " + model.getEndTime());
+        }
+
+        holder.date.setText(time);
+        holder.menuItem.setText(model.getSummary());
     }
 
     @Override
@@ -77,10 +88,12 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView date;
         TextView menuItem;
-        ViewHolder(LinearLayout itemView) {
+        TextView duration;
+        ViewHolder(MaterialCardView itemView) {
             super(itemView);
             this.date = itemView.findViewById(R.id.scheduleDate);
             this.menuItem = itemView.findViewById(R.id.scheduleSummary);
+            this.duration = itemView.findViewById(R.id.scheduleDuration);
         }
     }
 }

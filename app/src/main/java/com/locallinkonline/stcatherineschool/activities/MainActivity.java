@@ -5,13 +5,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.locallinkonline.stcatherineschool.fragment.GradesHomeworkFragment;
 import com.locallinkonline.stcatherineschool.fragment.HomeFragment;
-import com.locallinkonline.stcatherineschool.fragment.HomeworkForGradeFragment;
 import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.fragment.SelectActivityFragment;
-import com.locallinkonline.stcatherineschool.fragment.SubjectHomeworkFragment;
+import com.locallinkonline.stcatherineschool.fragment.SchoolScheduleFragment;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,12 +20,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements
-        GradesHomeworkFragment.OnFragmentInteractionListener,
-        SelectActivityFragment.OnFragmentInteractionListener,
         LunchFragment.OnFragmentInteractionListener,
-        HomeworkForGradeFragment.OnFragmentInteractionListener,
-        SubjectHomeworkFragment.OnFragmentInteractionListener,
-        HomeFragment.OnFragmentInteractionListener {
+        HomeFragment.OnFragmentInteractionListener,
+        SchoolScheduleFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBar mActionBar;
@@ -74,13 +68,9 @@ public class MainActivity extends AppCompatActivity implements
             /*case R.id.navigation_home:
                 pushFragment(new HomeFragment());
                 break;*/
-            case R.id.navigation_homework:
-                mActionBar.setTitle(R.string.homework_title);
-                pushFragment(new GradesHomeworkFragment());
-                break;
-            case R.id.navigation_activities:
-                mActionBar.setTitle(R.string.activities_title);
-                pushFragment(new SelectActivityFragment());
+            case R.id.navigation_school_schedule:
+                mActionBar.setTitle(R.string.school_schedule_title);
+                pushFragment(new SchoolScheduleFragment());
                 break;
             case R.id.navigation_lunch:
                 mActionBar.setTitle(R.string.lunch_title);

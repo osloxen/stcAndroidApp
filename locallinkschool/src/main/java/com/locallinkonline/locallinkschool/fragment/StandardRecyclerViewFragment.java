@@ -76,7 +76,7 @@ public abstract class StandardRecyclerViewFragment<T> extends Fragment {
 
     protected abstract RecyclerView.Adapter getViewAdapter(T data);
 
-    protected abstract StandardTouchListener.ClickListener getClickListener(RecyclerView view);
+    protected abstract StandardTouchListener.ClickListener getClickListener(View view);
 
     protected abstract void configureViewModel(LiveDataViewModel<T> viewModel);
 

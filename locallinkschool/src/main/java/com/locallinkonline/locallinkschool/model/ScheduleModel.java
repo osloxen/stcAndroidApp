@@ -6,4 +6,8 @@ public interface ScheduleModel {
     Date getDate();
 
     String getSummary();
+
+    String getStartTime();
+
+    String getEndTime();
 }
