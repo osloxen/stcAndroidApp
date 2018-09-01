@@ -26,8 +26,7 @@ public class SchoolScheduleFragment extends StandardScheduleListViewFragment<Sch
         return new StandardTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                MaterialCardView materialCardView = (MaterialCardView)view;
-                materialCardView
+               
             }
 
             @Override
