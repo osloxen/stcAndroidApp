@@ -90,7 +90,7 @@ public class LunchFragment extends StandardScheduleListViewFragment<LunchEntity>
     }
 
     @Override
-    protected StandardTouchListener.ClickListener getClickListener(RecyclerView view) {
+    protected StandardTouchListener.ClickListener getClickListener(View view) {
         return new StandardTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
