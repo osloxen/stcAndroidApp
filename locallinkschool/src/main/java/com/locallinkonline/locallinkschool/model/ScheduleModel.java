@@ -10,4 +10,6 @@ public interface ScheduleModel {
     String getStartTime();
 
     String getEndTime();
+
+    String getLongDescription();
 }

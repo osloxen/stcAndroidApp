@@ -42,5 +42,8 @@ public class SchoolScheduleEntity implements ScheduleModel {
     @ColumnInfo(name ="summary")
     @SerializedName("summary")
     String summary;
-    String description;
+
+    @ColumnInfo(name="description")
+    @SerializedName("description")
+    String longDescription;
 }

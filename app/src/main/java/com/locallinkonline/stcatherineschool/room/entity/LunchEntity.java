@@ -53,4 +53,9 @@ public class LunchEntity implements ScheduleModel {
     public String getEndTime() {
         return null;
     }
+
+    @Override
+    public String getLongDescription() {
+        return null;
+    }
 }
