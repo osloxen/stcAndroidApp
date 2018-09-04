@@ -11,5 +11,6 @@
     <string name="hello_lunch_fragment">Hello lunch fragment</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="stcBaseUrl">https://103hytduv6.execute-api.us-west-2.amazonaws.com/dev/</string>
+    <string name="twitter_name">St_Cath_Seattle</string>
 
 </resources>

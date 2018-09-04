@@ -21,4 +21,14 @@
 
     </group>
 
+    <item android:title="Social">
+        <menu>
+            <item
+                android:id="@+id/navigation_twitter"
+                android:icon="@drawable/ic_icons8_twitter"
+                android:title="Twitter" />
+        </menu>
+    </item>
+
+
 </menu>

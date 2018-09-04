@@ -1,11 +1,8 @@
 package com.locallinkonline.locallinkschool.adapter;
 
-import android.content.res.Resources;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -49,27 +46,6 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
 
         holder.date.setText(time);
         holder.menuItem.setText(model.getSummary());
-
-        if(model.getLongDescription() != null &&
-           !model.getLongDescription().isEmpty()) {
-            holder.description.setText(model.getLongDescription());
-
-            holder.expandButton.setVisibility(View.VISIBLE);
-            holder.expandButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    TransitionManager.beginDelayedTransition((ViewGroup)holder.itemView);
-                    if(holder.description.getVisibility() != View.VISIBLE) {
-                        holder.description.setVisibility(View.VISIBLE);
-                    } else {
-                        holder.description.setVisibility(View.GONE);
-                    }
-                }
-            });
-        } else  {
-            holder.expandButton.setVisibility(View.GONE);
-        }
-
     }
 
     @Override
@@ -113,15 +89,11 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
         TextView date;
         TextView menuItem;
         TextView duration;
-        TextView description;
-        MaterialButton expandButton;
         ViewHolder(MaterialCardView itemView) {
             super(itemView);
             this.date = itemView.findViewById(R.id.scheduleDate);
             this.menuItem = itemView.findViewById(R.id.scheduleSummary);
             this.duration = itemView.findViewById(R.id.scheduleDuration);
-            this.expandButton = itemView.findViewById(R.id.displayDescriptionButton);
-            this.description = itemView.findViewById(R.id.scheduleDescription);
         }
     }
 }

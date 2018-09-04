@@ -9,6 +9,7 @@ import com.locallinkonline.stcatherineschool.fragment.HomeFragment;
 import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.fragment.SchoolScheduleFragment;
+import com.locallinkonline.stcatherineschool.fragment.TwitterFragment;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity implements
         LunchFragment.OnFragmentInteractionListener,
         HomeFragment.OnFragmentInteractionListener,
-        SchoolScheduleFragment.OnFragmentInteractionListener {
+        SchoolScheduleFragment.OnFragmentInteractionListener,
+        TwitterFragment.OnFragmentInteractionListener{
 
     private DrawerLayout mDrawerLayout;
     private ActionBar mActionBar;
@@ -76,6 +78,10 @@ public class MainActivity extends AppCompatActivity implements
                 mActionBar.setTitle(R.string.lunch_title);
                 pushFragment(new LunchFragment());
                 break;
+            case R.id.navigation_twitter:
+                mActionBar.setTitle(R.string.twitter_title);
+                pushFragment(new TwitterFragment());
+                break;
             default:
                 break;
         }
@@ -90,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements
             FragmentTransaction ft = fragmentManager.beginTransaction();
             if (ft != null) {
                 ft.replace(R.id.rootActivityView, fragment);
+                ft.addToBackStack(null);
                 ft.commit();
             }
         }
