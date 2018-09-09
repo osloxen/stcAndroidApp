@@ -31,7 +31,6 @@
                 android:id="@+id/scheduleDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/abhaya_libre"
                 android:textColor="@android:color/black"
                 android:textSize="24sp" />
 
@@ -39,7 +38,6 @@
                 android:id="@+id/scheduleDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/abhaya_libre"
                 android:paddingStart="20dp"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
@@ -51,7 +49,6 @@
             android:id="@+id/scheduleSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abhaya_libre"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             android:textStyle="bold" />

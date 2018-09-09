@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.locallinkonline.stcatherineschool.fragment.HomeFragment;
 import com.locallinkonline.stcatherineschool.fragment.LunchFragment;
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.fragment.SchoolScheduleFragment;
@@ -22,7 +21,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements
         LunchFragment.OnFragmentInteractionListener,
-        HomeFragment.OnFragmentInteractionListener,
         SchoolScheduleFragment.OnFragmentInteractionListener,
         TwitterFragment.OnFragmentInteractionListener{
 
@@ -54,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
-                    // set item as selected to persist highlight
-                    menuItem.setChecked(true);
                     // close drawer when item is tapped
                     selectFragment(menuItem);
                     mDrawerLayout.closeDrawers();
@@ -67,19 +63,13 @@ public class MainActivity extends AppCompatActivity implements
 
     private void selectFragment(MenuItem item) {
         switch (item.getItemId()) {
-            /*case R.id.navigation_home:
-                pushFragment(new HomeFragment());
-                break;*/
             case R.id.navigation_school_schedule:
-                mActionBar.setTitle(R.string.school_schedule_title);
                 pushFragment(new SchoolScheduleFragment());
                 break;
             case R.id.navigation_lunch:
-                mActionBar.setTitle(R.string.lunch_title);
                 pushFragment(new LunchFragment());
                 break;
             case R.id.navigation_twitter:
-                mActionBar.setTitle(R.string.twitter_title);
                 pushFragment(new TwitterFragment());
                 break;
             default:
