@@ -3,13 +3,16 @@ package com.locallinkonline.stcatherineschool.room.db;
 import android.content.Context;
 
 import com.locallinkonline.stcatherineschool.R;
+import com.locallinkonline.stcatherineschool.rest.tasks.GetNewDataResourcesTask;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetNewLunchesTask;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetNewScheduleTask;
 import com.locallinkonline.stcatherineschool.room.converter.DateConverter;
+import com.locallinkonline.stcatherineschool.room.dao.DataResourcesDao;
 import com.locallinkonline.stcatherineschool.room.dao.LunchDao;
 import com.locallinkonline.stcatherineschool.room.dao.SchoolScheduleDao;
 import com.locallinkonline.stcatherineschool.room.entity.LunchEntity;
-import com.locallinkonline.stcatherineschool.room.entity.SchoolScheduleEntity;
+import com.locallinkonline.stcatherineschool.room.entity.MenuEntity;
+import com.locallinkonline.stcatherineschool.room.entity.ScheduleEntity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -19,13 +22,15 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {LunchEntity.class,
-                      SchoolScheduleEntity.class},
+                      ScheduleEntity.class,
+                      MenuEntity.class},
           version = 1,
           exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class StCatherineDatabase extends RoomDatabase {
     public abstract LunchDao lunchDao();
     public abstract SchoolScheduleDao schoolScheduleDao();
+    public abstract DataResourcesDao dataResourcesDao();
 
     private static StCatherineDatabase INSTANCE;
 
@@ -42,8 +47,7 @@ public abstract class StCatherineDatabase extends RoomDatabase {
                                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                                     super.onOpen(db);
                                     String url = context.getString(R.string.stcBaseUrl);
-                                    new GetNewLunchesTask(INSTANCE, url).execute();
-                                    new GetNewScheduleTask(INSTANCE, url).execute();
+                                    new GetNewDataResourcesTask(INSTANCE, url).execute();
                                 }
                             }).build();
                 }

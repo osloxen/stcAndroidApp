@@ -17,7 +17,7 @@ public abstract class StandardScheduleListViewFragment<T extends ScheduleModel> 
 
     @Override
     protected void configureViewModel(LiveDataViewModel<List<T>> viewModel) {
-        ScheduleViewAdapter<T> viewAdapter = new ScheduleViewAdapter<T>(null);
+        ScheduleViewAdapter<T> viewAdapter = new ScheduleViewAdapter<T>(viewModel.getData().getValue());
         this.recyclerView.setAdapter(viewAdapter);
         viewModel.getData().observe(this, viewAdapter::setScheduleModels);
     }

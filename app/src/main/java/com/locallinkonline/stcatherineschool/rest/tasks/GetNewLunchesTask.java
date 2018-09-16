@@ -21,7 +21,7 @@ public class GetNewLunchesTask extends StCatherineTask {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected Void doInBackground(String... args) {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
         Call<LunchResponseObject> getLunchesCall = stCatherineApi.getLunches(sdf.format(new Date()));
 

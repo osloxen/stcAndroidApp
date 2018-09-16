@@ -21,12 +21,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class SchoolScheduleEntity implements ScheduleModel {
+public class ScheduleEntity implements ScheduleModel {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "event_date")
     @SerializedName("eventDate")
     Date date;
+
+    @NonNull
+    @ColumnInfo(name = "schedule_type_id")
+    String scheduleType;
 
     @NonNull
     @ColumnInfo(name ="start_time")
