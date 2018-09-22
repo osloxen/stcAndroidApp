@@ -50,7 +50,9 @@ public class StCatherineRepository {
 
     public void updateSchedule(String[] args) { new GetNewScheduleTask(db, url).execute(args); }
 
-    public void getNewMenuItems() { new GetNewDataResourcesTask(db, url).execute(); }
+    public void getNewMenuItems() { new GetNewDataResourcesTask(db, url, null).execute(); }
+
+    public List<MenuEntity> getAllMenuItems() { return dataResourcesDao.getAllItems(); }
 
     public LiveData<List<ScheduleEntity>> getSchedule(String identifier) {
         return schoolScheduleDao.getSchedule(identifier, new Date());

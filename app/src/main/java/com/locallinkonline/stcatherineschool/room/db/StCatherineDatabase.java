@@ -47,7 +47,7 @@ public abstract class StCatherineDatabase extends RoomDatabase {
                                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                                     super.onOpen(db);
                                     String url = context.getString(R.string.stcBaseUrl);
-                                    new GetNewDataResourcesTask(INSTANCE, url).execute();
+                                    new GetNewDataResourcesTask(INSTANCE, url, null).execute();
                                 }
                             }).build();
                 }

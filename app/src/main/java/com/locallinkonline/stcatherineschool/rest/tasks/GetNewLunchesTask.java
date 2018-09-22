@@ -11,7 +11,7 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class GetNewLunchesTask extends StCatherineTask {
+public class GetNewLunchesTask extends StCatherineTask<Void> {
 
     private final LunchDao dao;
 
@@ -21,7 +21,7 @@ public class GetNewLunchesTask extends StCatherineTask {
     }
 
     @Override
-    protected Void doInBackground(String... args) {
+    protected Void doInBackground(Void... args) {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
         Call<LunchResponseObject> getLunchesCall = stCatherineApi.getLunches(sdf.format(new Date()));
 

@@ -1,5 +1,8 @@
 package com.locallinkonline.stcatherineschool.rest.tasks;
 
+import android.app.job.JobParameters;
+import android.app.job.JobService;
+
 import com.locallinkonline.stcatherineschool.rest.model.DataResourceResponse;
 import com.locallinkonline.stcatherineschool.room.dao.DataResourcesDao;
 import com.locallinkonline.stcatherineschool.room.db.StCatherineDatabase;
@@ -12,18 +15,23 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class GetNewDataResourcesTask extends StCatherineTask {
+public class GetNewDataResourcesTask extends StCatherineTask<JobParameters> {
 
     private DataResourcesDao dataResourcesDao;
 
-    public GetNewDataResourcesTask(StCatherineDatabase db, String url) {
+    private final JobService job;
+
+    public GetNewDataResourcesTask(StCatherineDatabase db, String url, JobService job) {
         super(db, url);
         this.dataResourcesDao = db.dataResourcesDao();
+        this.job = job;
     }
 
     @Override
-    protected Void doInBackground(String... args) {
+    protected Void doInBackground(JobParameters... args) {
         Call<DataResourceResponse> dataResourceResponseCall = stCatherineApi.getDataResources();
+
+        boolean success;
 
         try
         {
@@ -32,8 +40,14 @@ public class GetNewDataResourcesTask extends StCatherineTask {
             if(menuEntities.size() > 0) {
                 dataResourcesDao.updateMenuItems(menuEntities);
             }
+
+            success = true;
         } catch (IOException e) {
-            e.printStackTrace();
+            success = false;
+        }
+
+        if(args != null && args.length > 0) {
+            job.jobFinished(args[0], !success);
         }
 
         return null;

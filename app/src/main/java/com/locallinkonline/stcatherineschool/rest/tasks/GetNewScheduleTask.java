@@ -11,7 +11,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class GetNewScheduleTask extends StCatherineTask {
+public class GetNewScheduleTask extends StCatherineTask<String> {
 
     SchoolScheduleDao dao;
 

@@ -2,6 +2,7 @@ package com.locallinkonline.stcatherineschool.room.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -19,16 +20,15 @@ import lombok.Setter;
 @Entity(tableName = "menu_table")
 public class MenuEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    private int key;
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name ="identifier")
+    @SerializedName("identifier")
+    private String identifier;
 
     @ColumnInfo(name ="menu_item")
     @SerializedName("menuItem")
     private String menuItem;
-
-    @ColumnInfo(name ="identifier")
-    @SerializedName("identifier")
-    private String identifier;
 
     @ColumnInfo(name ="display_name")
     @SerializedName("displayName")

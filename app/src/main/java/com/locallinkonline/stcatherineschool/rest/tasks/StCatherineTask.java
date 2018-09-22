@@ -9,7 +9,7 @@ import com.locallinkonline.stcatherineschool.room.db.StCatherineDatabase;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class StCatherineTask extends AsyncTask<String, Void, Void> {
+public abstract class StCatherineTask<T> extends AsyncTask<T, Void, Void> {
 
     final StCatherineApi stCatherineApi;
 
