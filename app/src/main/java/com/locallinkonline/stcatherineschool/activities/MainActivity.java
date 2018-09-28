@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements
 
         JobScheduler jobScheduler =
                 (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        int result = jobScheduler.schedule(new JobInfo.Builder(LOAD_DATA_JOB_ID,
+        jobScheduler.schedule(new JobInfo.Builder(LOAD_DATA_JOB_ID,
                 new ComponentName(this, DataUpdateJob.class))
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPeriodic(30_000)

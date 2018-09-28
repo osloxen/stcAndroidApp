@@ -37,7 +37,8 @@ public class GetNewDataResourcesTask extends StCatherineTask<JobParameters> {
         {
             Response<DataResourceResponse> response = dataResourceResponseCall.execute();
             List<MenuEntity> menuEntities = response.body() != null ? response.body().getResourceList() : Collections.EMPTY_LIST;
-            if(menuEntities.size() > 0) {
+
+            if(menuEntities != null && menuEntities.size() > 0) {
                 dataResourcesDao.updateMenuItems(menuEntities);
             }
 

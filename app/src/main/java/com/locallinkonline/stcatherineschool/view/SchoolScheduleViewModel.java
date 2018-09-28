@@ -15,14 +15,12 @@ import androidx.lifecycle.LiveData;
 public class SchoolScheduleViewModel extends LiveDataViewModel<List<ScheduleEntity>> {
 
     private final StCatherineRepository stCatherineRepository;
-
     private static long lastUpdate = System.currentTimeMillis();
     private Bundle arguments;
 
     public SchoolScheduleViewModel(Application application) {
         super(application);
         stCatherineRepository = new StCatherineRepository(application);
-        data = stCatherineRepository.getSchoolSchedule();
     }
 
     @Override
@@ -46,6 +44,8 @@ public class SchoolScheduleViewModel extends LiveDataViewModel<List<ScheduleEnti
         this.arguments = arguments;
         if(arguments != null && arguments.getString("identifier") != null) {
             data = stCatherineRepository.getSchedule(arguments.getString("identifier"));
+        } else {
+            data = stCatherineRepository.getSchoolSchedule();
         }
     }
 }
