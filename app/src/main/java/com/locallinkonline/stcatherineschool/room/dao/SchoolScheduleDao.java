@@ -1,6 +1,5 @@
 package com.locallinkonline.stcatherineschool.room.dao;
 
-import com.locallinkonline.locallinkschool.view.LiveDataViewModel;
 import com.locallinkonline.stcatherineschool.room.entity.ScheduleEntity;
 
 import java.util.Date;

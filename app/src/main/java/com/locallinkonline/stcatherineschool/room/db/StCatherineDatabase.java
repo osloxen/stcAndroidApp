@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.locallinkonline.stcatherineschool.R;
 import com.locallinkonline.stcatherineschool.rest.tasks.GetNewDataResourcesTask;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetNewLunchesTask;
-import com.locallinkonline.stcatherineschool.rest.tasks.GetNewScheduleTask;
-import com.locallinkonline.stcatherineschool.room.converter.DateConverter;
+import com.locallinkonline.locallinkschool.room.converter.DateConverter;
 import com.locallinkonline.stcatherineschool.room.dao.DataResourcesDao;
 import com.locallinkonline.stcatherineschool.room.dao.LunchDao;
 import com.locallinkonline.stcatherineschool.room.dao.SchoolScheduleDao;

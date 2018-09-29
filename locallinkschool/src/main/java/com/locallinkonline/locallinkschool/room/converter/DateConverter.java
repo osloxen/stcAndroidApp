@@ -1,4 +1,4 @@
-package com.locallinkonline.stcatherineschool.room.converter;
+package com.locallinkonline.locallinkschool.room.converter;
 
 import java.util.Date;
 
