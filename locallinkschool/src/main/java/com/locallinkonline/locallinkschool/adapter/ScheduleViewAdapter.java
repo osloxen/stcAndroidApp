@@ -71,7 +71,7 @@ public class ScheduleViewAdapter<T extends ScheduleModel> extends RecyclerView.A
 
             @Override
             public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                return scheduleModels.get(oldItemPosition) == newScheduleModels.get(newItemPosition);
+                return scheduleModels.get(oldItemPosition).equals(newScheduleModels.get(newItemPosition));
             }
 
             @Override
