@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.locallinkonline.locallinkschool.R;
 import com.locallinkonline.locallinkschool.listener.StandardTouchListener;
 import com.locallinkonline.locallinkschool.view.AdViewModel;
+import com.locallinkonline.locallinkschool.view.LiveDataViewModel;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -21,13 +22,15 @@ import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
 
 public abstract class StandardRecyclerViewFragment<T> extends Fragment {
 
+    protected RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.standard_list_layout, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.standard_recycle_view);
+        recyclerView = view.findViewById(R.id.standard_recycle_view);
 
         RecyclerView.OnItemTouchListener touchListener = new StandardTouchListener(
                 getContext(),
@@ -37,12 +40,18 @@ public abstract class StandardRecyclerViewFragment<T> extends Fragment {
         configureStandardRecyclerView(
                 getContext(),
                 recyclerView,
-                getData(),
+                getStaticData(),
                 touchListener);
 
         AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
 
-        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
+        adViewModel.getData().observe(this, data -> changeAdView(view, data));
+
+        LiveDataViewModel<T> viewModel = getViewModel();
+
+        if(viewModel != null) {
+            configureViewModel(viewModel);
+        }
 
         // Inflate the layout for this fragment
         return view;
@@ -63,9 +72,13 @@ public abstract class StandardRecyclerViewFragment<T> extends Fragment {
         recyclerView.addOnItemTouchListener(touchListener);
     }
 
-    protected abstract T getData();
+    protected abstract T getStaticData();
 
     protected abstract RecyclerView.Adapter getViewAdapter(T data);
 
-    protected abstract StandardTouchListener.ClickListener getClickListener(RecyclerView view);
+    protected abstract StandardTouchListener.ClickListener getClickListener(View view);
+
+    protected abstract void configureViewModel(LiveDataViewModel<T> viewModel);
+
+    protected abstract LiveDataViewModel<T> getViewModel();
 }

@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -35,21 +35,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.16.20'
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-rc01'
-    implementation 'androidx.recyclerview:recyclerview-selection:1.0.0-rc01'
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.vectordrawable:vectordrawable:1.0.0-rc01'
-    implementation 'com.google.android.material:material:1.0.0-rc01'
-
-    implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-
     implementation project(":locallinkschool")
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 }

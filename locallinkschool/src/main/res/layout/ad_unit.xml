@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/localLinkAdUnit"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+    android:layout_marginRight="@dimen/mtrl_card_spacing"
+    android:layout_marginTop="@dimen/mtrl_card_spacing">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/localLinkAdBusiness"
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/localLinkAdUnit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"
-        android:gravity="top"
-        android:includeFontPadding="true"
-        android:text="@string/loading"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/localLinkAdText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="14sp"
-        android:layout_marginRight="14sp"
-        android:layout_below="@id/localLinkAdBusiness"
-        android:gravity="top"
-        android:includeFontPadding="true"
-        android:textColor="@android:color/secondary_text_light"
-        android:textSize="18sp" />
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/localLinkAdBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:gravity="top"
+            android:includeFontPadding="true"
+            android:text="@string/loading"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/localLinkAdText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/localLinkAdBusiness"
+            android:layout_gravity="top"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="14sp"
+            android:layout_marginRight="14sp"
+            android:gravity="top"
+            android:includeFontPadding="true"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -6,19 +6,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
+import com.locallinkonline.locallinkschool.fragment.StandardScheduleListViewFragment;
+import com.locallinkonline.locallinkschool.listener.StandardTouchListener;
+import com.locallinkonline.locallinkschool.view.LiveDataViewModel;
 import com.locallinkonline.stcatherineschool.R;
-import com.locallinkonline.stcatherineschool.adapter.LunchDisplayAdapter;
-import com.locallinkonline.stcatherineschool.rest.model.Lunch;
-import com.locallinkonline.locallinkschool.view.AdViewModel;
+import com.locallinkonline.stcatherineschool.room.entity.LunchEntity;
 import com.locallinkonline.stcatherineschool.view.LunchViewModel;
+
+import java.util.Collections;
+import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
-import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,9 +30,7 @@ import static com.locallinkonline.locallinkschool.util.AdUtils.changeAdView;
  * Use the {@link LunchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LunchFragment extends Fragment {
-
-    private ListView listView;
+public class LunchFragment extends StandardScheduleListViewFragment<LunchEntity> {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,36 +72,36 @@ public class LunchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_lunch, container, false);
-
-        listView = view.findViewById(R.id.lunchDetailsListView);
-
         Toolbar toolbar = container.findViewById(R.id.toolbar);
 
         toolbar.setTitle(R.string.lunch_title);
 
-        LunchViewModel viewModel = ViewModelProviders.of(this).get(LunchViewModel.class);
-
-        viewModel.getData().observe(this, data -> {
-            this.getMainListView().setAdapter(
-                    new LunchDisplayAdapter(this.getContext(),
-                            data.getLunchScheduleList().toArray(
-                                    new Lunch[data.getLunchScheduleList().size()])));
-        });
-
-        AdViewModel adViewModel = ViewModelProviders.of(getActivity()).get(AdViewModel.class);
-
-        adViewModel.getCurrentAd().observe(this, data -> changeAdView(view, data));
-
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    protected List<LunchEntity> getStaticData() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    protected LiveDataViewModel<List<LunchEntity>> getViewModel() {
+        return ViewModelProviders.of(this).get(LunchViewModel.class);
+    }
+
+    @Override
+    protected StandardTouchListener.ClickListener getClickListener(View view) {
+        return new StandardTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //Do Nothing
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //Do Nothing
+            }
+        };
     }
 
     @Override
@@ -134,9 +134,5 @@ public class LunchFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    public ListView getMainListView() {
-        return this.listView;
     }
 }

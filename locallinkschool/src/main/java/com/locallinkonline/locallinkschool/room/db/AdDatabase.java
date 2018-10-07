@@ -76,7 +76,7 @@ public abstract class AdDatabase extends RoomDatabase {
                 AdEntity[] ads = response.body();
 
                 if (ads != null && ads.length > 0) {
-                    dao.insert(ads);
+                    dao.insertAds(ads);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -4,7 +4,9 @@
     <string name="homework_title">Homework</string>
     <string name="activities_title">Activities</string>
     <string name="lunch_title">Lunch Menu</string>
+    <string name="twitter_title">Twitter</string>
 
     <string name="loading">Loading…</string>
+    <string name="school_schedule_title">School Schedule</string>
 
 </resources>
