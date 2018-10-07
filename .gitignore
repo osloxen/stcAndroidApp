@@ -2,6 +2,10 @@
 *.apk
 *.ap_
 
+# IDE Files
+.idea/
+
+
 # Files for the ART/Dalvik VM
 *.dex
 
