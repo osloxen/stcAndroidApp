@@ -15,14 +15,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(tableName = "schedule_table")
+@Entity(tableName = "schedule_table", primaryKeys = {"id", "event_date"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 public class ScheduleEntity implements ScheduleModel {
-    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
+    @SerializedName("id")
+    String id;
+
     @NonNull
     @ColumnInfo(name = "event_date")
     @SerializedName("eventDate")

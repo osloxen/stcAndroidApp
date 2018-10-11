@@ -46,7 +46,7 @@ public class GetNewScheduleTask extends StCatherineTask<String> {
             }
 
             if(entities.size() > 0) {
-                dao.insert(entities);
+                dao.updateScheduleItems(entities);
             }
 
         } catch (IOException e) {

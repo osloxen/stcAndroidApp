@@ -22,7 +22,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 @Database(entities = {LunchEntity.class,
                       ScheduleEntity.class,
                       MenuEntity.class},
-          version = 1,
+          version = 2,
           exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class StCatherineDatabase extends RoomDatabase {
@@ -40,6 +40,7 @@ public abstract class StCatherineDatabase extends RoomDatabase {
                             context.getApplicationContext(),
                             StCatherineDatabase.class,
                             "stc_database")
+                            .fallbackToDestructiveMigration()
                             .addCallback(new RoomDatabase.Callback() {
                                 @Override
                                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
