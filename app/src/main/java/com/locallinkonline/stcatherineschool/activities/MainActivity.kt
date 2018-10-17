@@ -120,11 +120,9 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
 
                 repo.getNewMenuItems()
 
-                return null
-            }
-
-            override fun onPostExecute(aVoid: Void) {
                 reCreateMenu()
+
+                return null
             }
         }.execute()
     }
