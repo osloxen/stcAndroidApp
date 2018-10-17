@@ -1,1 +1,1 @@
-include ':app', ':locallinkschool'
+include ':app', ':locallinkschool-debug', ':locallinkschool-release'
