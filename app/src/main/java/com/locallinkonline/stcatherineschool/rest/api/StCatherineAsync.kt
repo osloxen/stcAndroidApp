@@ -18,8 +18,8 @@ class StCatherineAsync {
 
     companion object {
 
-        val db: StCatherineDatabase? = StCatherineDatabase.getDatabase(MainActivity.instance.applicationContext);
-        val stCatherineApi: StCatherineApi = Retrofit.Builder()
+        private val db: StCatherineDatabase? = StCatherineDatabase.getDatabase(MainActivity.instance.applicationContext);
+        private val stCatherineApi: StCatherineApi = Retrofit.Builder()
                 .baseUrl(MainActivity.instance.applicationContext.getString(R.string.stcBaseUrl))
                 .addConverterFactory(GsonConverterFactory.create(
                         GsonBuilder().setLenient().create()))
