@@ -69,7 +69,7 @@ class StCatherineAsync {
 
                 val scheduleItems = response.body()?.schedule ?: Collections.emptyList()
 
-                for (i in scheduleItems!!.indices) {
+                for (i in scheduleItems.indices) {
                     scheduleItems[i].scheduleType = identifier
                 }
 
