@@ -3,9 +3,6 @@ package com.locallinkonline.stcatherineschool.room.repository
 import android.app.Application
 
 import com.locallinkonline.stcatherineschool.R
-import com.locallinkonline.stcatherineschool.rest.tasks.GetNewDataResourcesTask
-import com.locallinkonline.stcatherineschool.rest.tasks.GetNewLunchesTask
-import com.locallinkonline.stcatherineschool.rest.tasks.GetNewScheduleTask
 import com.locallinkonline.stcatherineschool.room.dao.DataResourcesDao
 import com.locallinkonline.stcatherineschool.room.dao.LunchDao
 import com.locallinkonline.stcatherineschool.room.dao.SchoolScheduleDao
@@ -46,18 +43,6 @@ class StCatherineRepository(application: Application) {
 
     fun getMenuItemsForGroup(groupName: String): List<MenuEntity> {
         return dataResourcesDao.getItemsForMenu(groupName)
-    }
-
-    fun checkForNewLunches() {
-        GetNewLunchesTask(db!!, url).execute()
-    }
-
-    fun updateSchedule(args: Array<String>) {
-        GetNewScheduleTask(db!!, url).execute(*args)
-    }
-
-    fun getNewMenuItems() {
-        GetNewDataResourcesTask(db!!, url, null).execute()
     }
 
     fun getSchedule(identifier: String): LiveData<List<ScheduleEntity>> {

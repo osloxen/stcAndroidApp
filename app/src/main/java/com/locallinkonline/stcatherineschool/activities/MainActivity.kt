@@ -1,16 +1,9 @@
 package com.locallinkonline.stcatherineschool.activities
 
-import android.app.job.JobInfo
-import android.app.job.JobScheduler
-import android.content.ComponentName
-import android.content.Context
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.SparseArray
-import android.view.Menu
 import android.view.MenuItem
-import android.view.SubMenu
 
 import com.google.android.material.navigation.NavigationView
 import com.locallinkonline.stcatherineschool.R
@@ -19,7 +12,6 @@ import com.locallinkonline.stcatherineschool.fragment.SchoolScheduleFragment
 import com.locallinkonline.stcatherineschool.fragment.TwitterFragment
 import com.locallinkonline.stcatherineschool.room.entity.MenuEntity
 import com.locallinkonline.stcatherineschool.room.repository.StCatherineRepository
-import com.locallinkonline.stcatherineschool.service.DataUpdateJob
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -31,6 +23,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineAsync
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionListener, SchoolScheduleFragment.OnFragmentInteractionListener, TwitterFragment.OnFragmentInteractionListener {
     private var mDrawerLayout: DrawerLayout? = null
@@ -41,12 +36,7 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-        jobScheduler.schedule(JobInfo.Builder(LOAD_DATA_JOB_ID,
-                ComponentName(this, DataUpdateJob::class.java))
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setPeriodic(30000)
-                .build())
+        instance = this
 
         setContentView(R.layout.main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -94,37 +84,33 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
     }
 
     private fun configureMenu() {
-        object : AsyncTask<Void, Void, Void>() {
+        StCatherineAsync.updateDataResources()
 
-            internal var repo = StCatherineRepository(application)
+        doAsync {
+            val repo = StCatherineRepository(application)
+            val groups = repo.menuGroups
 
-            override fun doInBackground(vararg voids: Void): Void? {
-                val groups = repo.menuGroups
+            var i = 0
+            for (groupIndex in groups.indices) {
+                val group = groups[groupIndex]
 
-                var i = 0
-                for (groupIndex in groups.indices) {
-                    val group = groups[groupIndex]
+                val menuNames = ArrayList<String>()
+                groupToTypeMap.append(groupIndex, group)
 
-                    val menuNames = ArrayList<String>()
-                    groupToTypeMap.append(groupIndex, group)
-
-                    val entities = repo.getMenuItemsForGroup(group)
-                    for (j in entities.indices) {
-                        menuNames.add(entities[j].displayName)
-                        menuNameToIdentifier[entities[j].displayName] = entities[j].identifier
-                        i++
-                    }
-
-                    groupToMenuItem[group] = menuNames
+                val entities = repo.getMenuItemsForGroup(group)
+                for (j in entities.indices) {
+                    menuNames.add(entities[j].displayName)
+                    menuNameToIdentifier[entities[j].displayName] = entities[j].identifier
+                    i++
                 }
 
-                repo.getNewMenuItems()
-
-                reCreateMenu()
-
-                return null
+                groupToMenuItem[group] = menuNames
             }
-        }.execute()
+
+            uiThread {
+                reCreateMenu()
+            }
+        }
     }
 
     private fun selectFragment(item: MenuItem) {
@@ -154,9 +140,7 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
         }
     }
 
-    private fun pushFragment(fragment: Fragment?) {
-        if (fragment == null)
-            return
+    private fun pushFragment(fragment: Fragment) {
 
         val fragmentManager = supportFragmentManager
         if (fragmentManager != null) {
@@ -216,7 +200,7 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
     }
 
     companion object {
-
-        private val LOAD_DATA_JOB_ID = 1234
+        lateinit var instance: MainActivity
+            private set
     }
 }

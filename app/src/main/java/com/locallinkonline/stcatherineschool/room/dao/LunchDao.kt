@@ -24,7 +24,7 @@ abstract class LunchDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction
-    fun insert(vararg lunchEntitys: LunchEntity) {
+    fun insert(lunchEntitys: List<LunchEntity>) {
 
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR, 0)

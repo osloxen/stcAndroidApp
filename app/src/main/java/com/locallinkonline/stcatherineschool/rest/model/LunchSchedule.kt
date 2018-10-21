@@ -7,5 +7,5 @@ data class LunchSchedule(
         @SerializedName("alexaResponse")
         var alexaResponse: String?,
         @SerializedName("lunchScheduleArray")
-        var lunches: Array<LunchEntity>? = null
+        var lunches: List<LunchEntity>? = null
 )

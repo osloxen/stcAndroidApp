@@ -9,6 +9,7 @@ import com.locallinkonline.stcatherineschool.room.entity.ScheduleEntity
 import com.locallinkonline.stcatherineschool.room.repository.StCatherineRepository
 
 import androidx.lifecycle.LiveData
+import com.locallinkonline.stcatherineschool.rest.api.StCatherineAsync
 
 class SchoolScheduleViewModel(application: Application) : LiveDataViewModel<List<ScheduleEntity>>(application) {
 
@@ -25,7 +26,7 @@ class SchoolScheduleViewModel(application: Application) : LiveDataViewModel<List
         val millisSinceLastUpdate = System.currentTimeMillis() - lastUpdate
 
         if (this.liveData!!.value == null || this.liveData!!.value!!.isEmpty() || millisSinceLastUpdate > 5 * DateUtils.MINUTE_IN_MILLIS) {
-            stCatherineRepository.updateSchedule(arrayOf(identifier!!, type!!))
+            StCatherineAsync.updateSchedule(identifier!!, type!!)
             lastUpdate = System.currentTimeMillis()
         }
 
