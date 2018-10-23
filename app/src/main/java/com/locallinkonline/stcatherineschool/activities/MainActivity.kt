@@ -17,7 +17,6 @@ import java.util.ArrayList
 import java.util.HashMap
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -35,11 +34,9 @@ class MainActivity : AppCompatActivity(), LunchFragment.OnFragmentInteractionLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         instance = this
 
         setContentView(R.layout.main)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val mActionBar = supportActionBar
