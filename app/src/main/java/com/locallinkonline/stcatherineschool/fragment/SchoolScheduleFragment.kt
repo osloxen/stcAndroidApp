@@ -12,7 +12,6 @@ import com.locallinkonline.stcatherineschool.R
 import com.locallinkonline.stcatherineschool.room.entity.ScheduleEntity
 import com.locallinkonline.stcatherineschool.view.SchoolScheduleViewModel
 
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
 
 class SchoolScheduleFragment : StandardScheduleListViewFragment<ScheduleEntity>() {
@@ -28,16 +27,6 @@ class SchoolScheduleFragment : StandardScheduleListViewFragment<ScheduleEntity>(
 
             return viewModel
         }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val toolbar = container!!.findViewById<Toolbar>(R.id.toolbar)
-
-        val title = arguments!!.getString("title")
-
-        toolbar.title = title
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun getClickListener(view: View): StandardTouchListener.ClickListener {
         return object : StandardTouchListener.ClickListener {

@@ -44,15 +44,6 @@ class LunchFragment : StandardScheduleListViewFragment<LunchEntity>() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val toolbar = container!!.findViewById<Toolbar>(R.id.toolbar)
-
-        toolbar.setTitle(R.string.lunch_title)
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun getClickListener(view: View): StandardTouchListener.ClickListener {
         return object : StandardTouchListener.ClickListener {
             override fun onClick(view: View, position: Int) {

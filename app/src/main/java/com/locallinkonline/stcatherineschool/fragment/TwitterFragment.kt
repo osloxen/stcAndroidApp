@@ -15,13 +15,5 @@ class TwitterFragment : StandardTwitterFeedFragment() {
     override val username: String
         get() = getString(R.string.twitter_name)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val toolbar = container!!.findViewById<Toolbar>(R.id.toolbar)
-
-        toolbar.setTitle(R.string.twitter_title)
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     interface OnFragmentInteractionListener
 }

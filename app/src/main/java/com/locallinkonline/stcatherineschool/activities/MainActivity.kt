@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.locallinkonline.stcatherineschool.rest.api.StCatherineAsync
+import kotlinx.android.synthetic.main.main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
