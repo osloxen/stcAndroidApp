@@ -4,4 +4,6 @@
     <string name="stcBaseUrl">https://55lhd3o9k4.execute-api.us-west-1.amazonaws.com/dev/</string>
     <string name="twitter_name">St_Cath_Seattle</string>
     <string name="navigation_header">Navigation Header</string>
+
+    <string name="ad_school_id">1001</string>
 </resources>
